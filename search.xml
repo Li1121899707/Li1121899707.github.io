@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title><![CDATA[Git基础]]></title>
     <url>%2Fliysuzy%2F2018%2F10%2F14%2FGit%20%E5%9F%BA%E7%A1%80%20%2F</url>
-    <content type="text"><![CDATA[Git 基础[TOC] 一、Git简介 分布式版本控制系统 版本控制系统 本地 他人无法得知工作 集中式 一旦服务器存在问题则丢失 分布式 服务器、本地均保存版本服务信息，若中央服务器存在问题，任意一台电脑均可以作为服务器。 二、 Git工作流程1、 版本库 Remote Repository 远端版本库 Local Repository 本地 Staging 暂存，即将更新成为下一个版本，也有可能不会成为下一个版本 Working Directory 版本库的本地检出，即电脑可以看到的文件 2. git config12git config --global user name &quot;user&quot;git config --global user email &quot;xxx@gmail.com&quot; 提交版本信息，邮箱：共享工作成果，方便联系；用户名：得知提交用户。 3. git clonegit clone repo [directory] repo: url directory: 可选本地目录， 未指定为与远端相同 已有远端仓库clone到本地 clone 后 .git 目录： 存放相关版本信息 下面以Coding.net为远端版本库为例： 现在有一个已经创建好的版本库：我们来clone一下。 相应目录下Clone了这一个项目。 4. git initgit init repo e.g. git init test 创建一个本地版本库 生成.git目录 直接创建本地git仓库，不需要有远端仓库 5. git status 查看工作区和暂存区的文件状态 那些被创建、修改……的文件 6. git addgit add [-A] &lt;file&gt; e.g. git add -Ae.g. git add file 添加文件从工作区到暂存区 A: All 暂存工作区成果等待提交 7. git diffgit diff 查看工作区改动 git diff -cached 查看暂存区改动 与 git status 的区别 gti diff 比 git status 更详细, 便于寻找改动，进行检查。 8. git commitgit commit -m &quot;提交注释&quot; 让暂存区的文件真正变为下一个版本 注释为本次修改的内容梗概 9. git log 查看提交历史 git log 显示提交的用户名、邮箱、日期等，详细显示 git log --oneline 日志大纲，粗略显示 git log --oneline --graph 拓扑图展示 git log -- oneline --reverse 逆向显示日志信息，时间正序来排列 10. git reset HEAD 游标： 当前活跃分支的游标 改变本地版本库 git reset --soft 工作区、暂存区内容均不变，只改变本地版本库 回退到倒数第二次提交，将最后一次提交放入暂存区，即commit的反向操作 git reset --mixed 工作区不变、暂存区改变，是 git reset 的默认命令。 文件从暂存区删除，回到工作区，只是未被加入暂存区的一个状态。 git reset --hard 工作区、暂存区均改变 文件从工作区、暂存区删除，丢弃更改。 11. git rmgit rm &lt;file&gt; 从工作区和暂存区删除文件 git rm -f 强制删除 git rm --cached 从跟踪清单(暂存状态)中删除，文件仍然在目录中，在工作区中是一个未被跟踪的状态。]]></content>
+    <content type="text"><![CDATA[一、Git简介 分布式版本控制系统 版本控制系统 本地 他人无法得知工作 集中式 一旦服务器存在问题则丢失 分布式 服务器、本地均保存版本服务信息，若中央服务器存在问题，任意一台电脑均可以作为服务器。 二、 Git工作流程1、 版本库 Remote Repository 远端版本库 Local Repository 本地 Staging 暂存，即将更新成为下一个版本，也有可能不会成为下一个版本 Working Directory 版本库的本地检出，即电脑可以看到的文件 2. git config12git config --global user name &quot;user&quot;git config --global user email &quot;xxx@gmail.com&quot; 提交版本信息，邮箱：共享工作成果，方便联系；用户名：得知提交用户。 3. git clonegit clone repo [directory] repo: url directory: 可选本地目录， 未指定为与远端相同 已有远端仓库clone到本地 clone 后 .git 目录： 存放相关版本信息 下面以Coding.net为远端版本库为例： 现在有一个已经创建好的版本库：我们来clone一下。 相应目录下Clone了这一个项目。 4. git initgit init repo e.g. git init test 创建一个本地版本库 生成.git目录 直接创建本地git仓库，不需要有远端仓库 5. git status 查看工作区和暂存区的文件状态 那些被创建、修改……的文件 6. git addgit add [-A] &lt;file&gt; e.g. git add -Ae.g. git add file 添加文件从工作区到暂存区 A: All 暂存工作区成果等待提交 7. git diffgit diff 查看工作区改动 git diff -cached 查看暂存区改动 与 git status 的区别 gti diff 比 git status 更详细, 便于寻找改动，进行检查。 8. git commitgit commit -m &quot;提交注释&quot; 让暂存区的文件真正变为下一个版本 注释为本次修改的内容梗概 9. git log 查看提交历史 git log 显示提交的用户名、邮箱、日期等，详细显示 git log --oneline 日志大纲，粗略显示 git log --oneline --graph 拓扑图展示 git log -- oneline --reverse 逆向显示日志信息，时间正序来排列 10. git reset HEAD 游标： 当前活跃分支的游标 改变本地版本库 git reset --soft 工作区、暂存区内容均不变，只改变本地版本库 回退到倒数第二次提交，将最后一次提交放入暂存区，即commit的反向操作 git reset --mixed 工作区不变、暂存区改变，是 git reset 的默认命令。 文件从暂存区删除，回到工作区，只是未被加入暂存区的一个状态。 git reset --hard 工作区、暂存区均改变 文件从工作区、暂存区删除，丢弃更改。 11. git rmgit rm &lt;file&gt; 从工作区和暂存区删除文件 git rm -f 强制删除 git rm --cached 从跟踪清单(暂存状态)中删除，文件仍然在目录中，在工作区中是一个未被跟踪的状态。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>技术</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[阴阳师式神语音查询——SSM]]></title>
