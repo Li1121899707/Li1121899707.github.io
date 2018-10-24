@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++,C,编译原理,词法分析," />
 
 
 
@@ -97,16 +97,18 @@
 
 
 
-<meta name="description" content="Being alive, being vivid">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiySuzy">
-<meta property="og:url" content="http://liysuzy.coding.me/categories/生活/index.html">
+<meta name="description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。 教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法分">
+<meta name="keywords" content="C++,C,编译原理,词法分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="词法分析器 C++实现">
+<meta property="og:url" content="http://liysuzy.coding.me/2018/10/22/词法分析器/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="Being alive, being vivid">
+<meta property="og:description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。 教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法分">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-24T06:31:54.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LiySuzy">
-<meta name="twitter:description" content="Being alive, being vivid">
+<meta name="twitter:title" content="词法分析器 C++实现">
+<meta name="twitter:description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。 教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法分">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://liysuzy.coding.me/categories/生活/"/>
+  <link rel="canonical" href="http://liysuzy.coding.me/2018/10/22/词法分析器/"/>
 
 
 
 
 
-  <title>分类: 生活 | LiySuzy</title>
+  <title>词法分析器 C++实现 | LiySuzy</title>
   
 
 
@@ -161,7 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -299,55 +301,263 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>生活<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liysuzy.coding.me/liysuzy/2018/10/22/词法分析器/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiySuzy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/liysuzy/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LiySuzy">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/liysuzy/2018/08/23/first-day/" itemprop="url">
-              
-                <span itemprop="name">建站第一天！纪念一下</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">词法分析器 C++实现</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-23T22:30:00+08:00"
-              content="2018-08-23" >
-          08-23
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T20:00:00+08:00">
+                2018-10-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/liysuzy/categories/实验/" itemprop="url" rel="index">
+                    <span itemprop="name">实验</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  926 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 </span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、-词法分析做什么"><a href="#一、-词法分析做什么" class="headerlink" title="一、 词法分析做什么"></a>一、 词法分析做什么</h2><h4 id="词法分析是编译器的第一个步骤。"><a href="#词法分析是编译器的第一个步骤。" class="headerlink" title="词法分析是编译器的第一个步骤。"></a>词法分析是编译器的第一个步骤。</h4><blockquote>
+<p>教材定义：<br>词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。<br>对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:<br><code>&lt;token-name, attribute-value&gt;</code></p>
+</blockquote>
+<p>词法分析器做的任务就是将源程序进行分解为以下五类单词<br><strong>“标识符，关键字，常数，运算符，界符”</strong></p>
+<h2 id="二、-词法分析器（简易）实现"><a href="#二、-词法分析器（简易）实现" class="headerlink" title="二、 词法分析器（简易）实现"></a>二、 词法分析器（简易）实现</h2><h4 id="整个程序流程："><a href="#整个程序流程：" class="headerlink" title="整个程序流程："></a><em>整个程序流程：</em></h4><ol>
+<li>对代码进行<strong>预处理</strong>，消除注释（单行、多行），目的是让词法分析时不进行过量的超前搜索与回退，以及减少判断注释时的内存消耗。将消除注释的代码存入另一个文件，为词法分析做准备。</li>
+<li>读取不含注释的文件，进行单词的识别。每识别一个单词，需要向屏幕输出此法单元<code>&lt;token-name, attribute-value&gt;</code></li>
+</ol>
+<h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a><em>注解</em></h4><ol>
+<li>将所有关键字、单目运算符、双目运算符、界符分别存放到数组中。</li>
+<li><p>预处理————消除注释<br> C语言注释：<code>// 单行注释</code> <code>/* 多行注释 */</code><br> “/“出现时有几种情况：“除号”，“单行注释”，“多行注释”，“字符串内的字符常量”<br> 因此需要对这几种情况进行判断。于是采用了编译原理中常用的————自动状态机<br> <em>当然，这个程序中的状态机并不是严格按照状态机的定义来设计的，仅仅可以进行以上情况的判断。</em></p>
+<p><strong>状态机如下图</strong>：</p>
+<p>使用状态机的好处:</p>
+<ul>
+<li>避免了引号内有注释符号而被识别为注释的情况</li>
+<li>可以查找注释不闭合与引号不闭合错误。因为如果读到文件终结时3状态或者5状态，都代表等待下一个/或者“的输入，也就是没有与上一个相匹配的字符。</li>
+<li>内存开销小</li>
+</ul>
+</li>
+<li><p>预处理————文件读取<br> 由于预处理无需进行超前搜索与回退，因此按字符读取是最节省空间与内存的。</p>
+</li>
+<li><p>词法分析————单词的识别<br> <strong>单词识别优先级</strong>：<br> <code>字母&amp;数字====&gt;状态机外字符（运算符与部分分界符）====&gt;状态机内字符（需要进行状态转换）</code></p>
+<p> 但是这样识别会产生一个问题：引号内的字符会被视为标识符，甚至中文是乱码。<br> 于是我考虑优先识别引号。</p>
+</li>
+</ol>
+<ul>
+<li><p>① 如果识别到第一个引号，将阻塞后续字符的判断，因为代表这是在一个字符串内，不需要判断是否为标识符、关键字等，直到第二个引号进入，才停止阻塞。可以使用“模二求余”判断引号的单双数。</p>
+</li>
+<li><p>② 遇到空格、Tab和回车跳过。</p>
+</li>
+<li><p>③ 判断是否是字母或数字或下划线，如果是</p>
+<ul>
+<li>是字母或下划线，表示是关键字或标识符，<strong>依次</strong>进行判断。</li>
+<li>是数字开头，判断是否是合法数字。如果合法，是浮点数还是整数，<strong>依次</strong>进行判断。</li>
+</ul>
+</li>
+<li><p>④ 判断是否是运算符<br>  <strong>超前搜索一位</strong>，<strong>依次</strong>判断是否是双目运算符、单目运算符、界符。</p>
+<p>至此，词法分析基本结束。</p>
+</li>
+</ul>
+<h2 id="三、-词法分析器（简易）代码"><a href="#三、-词法分析器（简易）代码" class="headerlink" title="三、 词法分析器（简易）代码"></a>三、 词法分析器（简易）代码</h2><blockquote>
+<p><a href="https://coding.net/u/liysuzy/p/Compilers/git" target="_blank" rel="noopener">https://coding.net/u/liysuzy/p/Compilers/git</a><br>包含源代码与测试用例，如果测试出现问题，可以联系<a href="mailto:1121899707@163.com" target="_blank" rel="noopener">1121899707@163.com</a>，方便我完善程序。</p>
+</blockquote>
+<p>（很不巧的是，做该项目github竟然无法访问！只好放在Coding.net了）</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 终 -------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+          
+            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
+          
+            <a href="/liysuzy/tags/词法分析/" rel="tag"><i class="fa fa-tag"></i> 词法分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/liysuzy/2018/10/14/Git 基础 /" rel="next" title="Git基础">
+                <i class="fa fa-chevron-left"></i> Git基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/liysuzy/2018/10/24/装好虚拟机需要做的/" rel="prev" title="装好虚拟机需要做~">
+                装好虚拟机需要做~ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -355,6 +565,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -375,8 +589,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -492,6 +715,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-词法分析做什么"><span class="nav-number">1.</span> <span class="nav-text">一、 词法分析做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#词法分析是编译器的第一个步骤。"><span class="nav-number">1.0.1.</span> <span class="nav-text">词法分析是编译器的第一个步骤。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-词法分析器（简易）实现"><span class="nav-number">2.</span> <span class="nav-text">二、 词法分析器（简易）实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整个程序流程："><span class="nav-number">2.0.1.</span> <span class="nav-text">整个程序流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注解"><span class="nav-number">2.0.2.</span> <span class="nav-text">注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-词法分析器（简易）代码"><span class="nav-number">3.</span> <span class="nav-text">三、 词法分析器（简易）代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -634,6 +873,10 @@
   
 
   
+  <script type="text/javascript" src="/liysuzy/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/liysuzy/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
