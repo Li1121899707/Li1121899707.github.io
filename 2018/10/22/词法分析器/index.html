@@ -97,18 +97,20 @@
 
 
 
-<meta name="description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。 教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法分">
+<meta name="description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。  教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法">
 <meta name="keywords" content="C++,C,编译原理,词法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="词法分析器 C++实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/10/22/词法分析器/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。 教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法分">
+<meta property="og:description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。  教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T06:31:54.824Z">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/绘图1.png">
+<meta property="og:updated_time" content="2018-10-24T07:53:27.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词法分析器 C++实现">
-<meta name="twitter:description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。 教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法分">
+<meta name="twitter:description" content="一、 词法分析做什么词法分析是编译器的第一个步骤。  教材定义：词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:&amp;lt;token-name, attribute-value&amp;gt;  词法分析器做的任务就是将源程序进行分解为以下五类单词“标识符，关键字，常数，运算符，界符” 二、 词法">
+<meta name="twitter:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/绘图1.png">
 
 
 
@@ -398,7 +400,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  926 字
+                  927 字
                 </span>
               
 
@@ -435,7 +437,8 @@
       
 
       
-        <h2 id="一、-词法分析做什么"><a href="#一、-词法分析做什么" class="headerlink" title="一、 词法分析做什么"></a>一、 词法分析做什么</h2><h4 id="词法分析是编译器的第一个步骤。"><a href="#词法分析是编译器的第一个步骤。" class="headerlink" title="词法分析是编译器的第一个步骤。"></a>词法分析是编译器的第一个步骤。</h4><blockquote>
+        <h2 id="一、-词法分析做什么"><a href="#一、-词法分析做什么" class="headerlink" title="一、 词法分析做什么"></a>一、 词法分析做什么</h2><p><strong>词法分析是编译器的第一个步骤。</strong></p>
+<blockquote>
 <p>教材定义：<br>词法分析器读入组成源程序的字符流， 并且将它们组织成为有意义的词素(lexeme)的序列。<br>对于每个词素，词法分析器产生如下形式的词法单元(token)作为输出:<br><code>&lt;token-name, attribute-value&gt;</code></p>
 </blockquote>
 <p>词法分析器做的任务就是将源程序进行分解为以下五类单词<br><strong>“标识符，关键字，常数，运算符，界符”</strong></p>
@@ -446,14 +449,16 @@
 <h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a><em>注解</em></h4><ol>
 <li>将所有关键字、单目运算符、双目运算符、界符分别存放到数组中。</li>
 <li><p>预处理————消除注释<br> C语言注释：<code>// 单行注释</code> <code>/* 多行注释 */</code><br> “/“出现时有几种情况：“除号”，“单行注释”，“多行注释”，“字符串内的字符常量”<br> 因此需要对这几种情况进行判断。于是采用了编译原理中常用的————自动状态机<br> <em>当然，这个程序中的状态机并不是严格按照状态机的定义来设计的，仅仅可以进行以上情况的判断。</em></p>
-<p><strong>状态机如下图</strong>：</p>
-<p>使用状态机的好处:</p>
+<p><strong>状态机如下图</strong>：<br><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/绘图1.png" alt=""></p>
+</li>
+</ol>
+<p>  使用状态机的好处:</p>
 <ul>
 <li>避免了引号内有注释符号而被识别为注释的情况</li>
 <li>可以查找注释不闭合与引号不闭合错误。因为如果读到文件终结时3状态或者5状态，都代表等待下一个/或者“的输入，也就是没有与上一个相匹配的字符。</li>
 <li>内存开销小</li>
 </ul>
-</li>
+<ol start="3">
 <li><p>预处理————文件读取<br> 由于预处理无需进行超前搜索与回退，因此按字符读取是最节省空间与内存的。</p>
 </li>
 <li><p>词法分析————单词的识别<br> <strong>单词识别优先级</strong>：<br> <code>字母&amp;数字====&gt;状态机外字符（运算符与部分分界符）====&gt;状态机内字符（需要进行状态转换）</code></p>
@@ -478,7 +483,7 @@
 <h2 id="三、-词法分析器（简易）代码"><a href="#三、-词法分析器（简易）代码" class="headerlink" title="三、 词法分析器（简易）代码"></a>三、 词法分析器（简易）代码</h2><blockquote>
 <p><a href="https://coding.net/u/liysuzy/p/Compilers/git" target="_blank" rel="noopener">https://coding.net/u/liysuzy/p/Compilers/git</a><br>包含源代码与测试用例，如果测试出现问题，可以联系<a href="mailto:1121899707@163.com" target="_blank" rel="noopener">1121899707@163.com</a>，方便我完善程序。</p>
 </blockquote>
-<p>（很不巧的是，做该项目github竟然无法访问！只好放在Coding.net了）</p>
+<p>（很不巧的是，做该项目这天github竟然宕机了！！！只好放在Coding.net了）</p>
 
       
     </div>
@@ -725,7 +730,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-词法分析做什么"><span class="nav-number">1.</span> <span class="nav-text">一、 词法分析做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#词法分析是编译器的第一个步骤。"><span class="nav-number">1.0.1.</span> <span class="nav-text">词法分析是编译器的第一个步骤。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-词法分析器（简易）实现"><span class="nav-number">2.</span> <span class="nav-text">二、 词法分析器（简易）实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整个程序流程："><span class="nav-number">2.0.1.</span> <span class="nav-text">整个程序流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注解"><span class="nav-number">2.0.2.</span> <span class="nav-text">注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-词法分析器（简易）代码"><span class="nav-number">3.</span> <span class="nav-text">三、 词法分析器（简易）代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-词法分析做什么"><span class="nav-number">1.</span> <span class="nav-text">一、 词法分析做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-词法分析器（简易）实现"><span class="nav-number">2.</span> <span class="nav-text">二、 词法分析器（简易）实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整个程序流程："><span class="nav-number">2.0.1.</span> <span class="nav-text">整个程序流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注解"><span class="nav-number">2.0.2.</span> <span class="nav-text">注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-词法分析器（简易）代码"><span class="nav-number">3.</span> <span class="nav-text">三、 词法分析器（简易）代码</span></a></li></ol></div>
             
 
           </div>
