@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="编译原理,语法分析,C++,C," />
 
 
 
@@ -97,16 +97,18 @@
 
 
 
-<meta name="description" content="Being alive, being vivid">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiySuzy">
-<meta property="og:url" content="http://liysuzy.coding.me/tags/Ubuntu/index.html">
+<meta name="description" content="一、语法分析器做什么二、自底向上的语法分析器的实现I. 我的推导方式步骤：  分析输入流，需要使用SLR分析表，[SLR(1),1省略] 得到SLR分析表，需要用DFA生成 得到DFA，需要用NFA生成，NFA-&amp;gt;DFA需要用子集构造法，也就是需要得到Closure 得到NFA，需要得到文法中所有项目 得到项目，需要给文法加点   至此就推导到最开始的文法了  这种做法会有疏漏，但可以应对大">
+<meta name="keywords" content="编译原理,语法分析,C++,C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SLR语法分析器 C++实现">
+<meta property="og:url" content="http://liysuzy.coding.me/2018/10/28/语法分析器 c++/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="Being alive, being vivid">
+<meta property="og:description" content="一、语法分析器做什么二、自底向上的语法分析器的实现I. 我的推导方式步骤：  分析输入流，需要使用SLR分析表，[SLR(1),1省略] 得到SLR分析表，需要用DFA生成 得到DFA，需要用NFA生成，NFA-&amp;gt;DFA需要用子集构造法，也就是需要得到Closure 得到NFA，需要得到文法中所有项目 得到项目，需要给文法加点   至此就推导到最开始的文法了  这种做法会有疏漏，但可以应对大">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-31T03:59:22.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LiySuzy">
-<meta name="twitter:description" content="Being alive, being vivid">
+<meta name="twitter:title" content="SLR语法分析器 C++实现">
+<meta name="twitter:description" content="一、语法分析器做什么二、自底向上的语法分析器的实现I. 我的推导方式步骤：  分析输入流，需要使用SLR分析表，[SLR(1),1省略] 得到SLR分析表，需要用DFA生成 得到DFA，需要用NFA生成，NFA-&amp;gt;DFA需要用子集构造法，也就是需要得到Closure 得到NFA，需要得到文法中所有项目 得到项目，需要给文法加点   至此就推导到最开始的文法了  这种做法会有疏漏，但可以应对大">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://liysuzy.coding.me/tags/Ubuntu/"/>
+  <link rel="canonical" href="http://liysuzy.coding.me/2018/10/28/语法分析器 c++/"/>
 
 
 
 
 
-  <title>标签: Ubuntu | LiySuzy</title>
+  <title>SLR语法分析器 C++实现 | LiySuzy</title>
   
 
 
@@ -161,7 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -299,54 +301,268 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Ubuntu<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liysuzy.coding.me/liysuzy/2018/10/28/语法分析器 c++/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiySuzy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/liysuzy/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LiySuzy">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/liysuzy/2018/10/24/装好虚拟机需要做的/" itemprop="url">
-              
-                <span itemprop="name">装好虚拟机需要做~</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">SLR语法分析器 C++实现</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-24T16:00:00+08:00"
-              content="2018-10-24" >
-          10-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T20:00:00+08:00">
+                2018-10-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/liysuzy/categories/实验/" itemprop="url" rel="index">
+                    <span itemprop="name">实验</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  979 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 </span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h2 id="一、语法分析器做什么"><a href="#一、语法分析器做什么" class="headerlink" title="一、语法分析器做什么"></a>一、语法分析器做什么</h2><h2 id="二、自底向上的语法分析器的实现"><a href="#二、自底向上的语法分析器的实现" class="headerlink" title="二、自底向上的语法分析器的实现"></a>二、自底向上的语法分析器的实现</h2><h3 id="I-我的推导方式"><a href="#I-我的推导方式" class="headerlink" title="I. 我的推导方式"></a>I. 我的推导方式</h3><p>步骤：</p>
+<ul>
+<li>分析输入流，需要使用SLR分析表，[SLR(1),1省略]</li>
+<li>得到SLR分析表，需要用DFA生成</li>
+<li>得到DFA，需要用NFA生成，NFA-&gt;DFA需要用子集构造法，也就是需要得到Closure</li>
+<li>得到NFA，需要得到文法中所有项目</li>
+<li><p>得到项目，需要给文法加点</p>
+<p>  至此就推导到最开始的文法了<br>  这种做法会有疏漏，但可以应对大部分的文法。本身比较菜，课本上的算法着实很难懂。。。</p>
+</li>
+</ul>
+<h3 id="II-实现"><a href="#II-实现" class="headerlink" title="II. 实现"></a>II. 实现</h3><h4 id="0-数据结构"><a href="#0-数据结构" class="headerlink" title="0. 数据结构"></a>0. 数据结构</h4><ul>
+<li>文法：<code>string</code> 数组</li>
+<li>项目集：<code>vector&lt;itemStruct&gt;</code> itemStruct为结构体</li>
+<li>Closure：<code>vector&lt;closureStruct&gt;</code> item<br>等</li>
+</ul>
+<h4 id="1-项目生成"><a href="#1-项目生成" class="headerlink" title="1. 项目生成"></a>1. 项目生成</h4><p>步骤：</p>
+<ul>
+<li>① 读取文法文件，将所有文法存入一种数据结构，我选择了string数组</li>
+<li>② 遍历string数组的所有元素，为其加点，从产生式的右边的第一个符号的左侧开始加点，点每次右移一位，直到移到最右侧，这些标有点的产生式就是文法的LR(0)项目，即<br>  <code>产生式：S-&gt;AB; 项目：(1) S-&gt;.AB (2) S-&gt;A.B (3) S-&gt;AB.</code></li>
+</ul>
+<p>读取文法后，将终结符、非终结符分别存入数组，便于之后的判断。</p>
+<h4 id="2-读取规范句型"><a href="#2-读取规范句型" class="headerlink" title="2. 读取规范句型"></a>2. 读取规范句型</h4><pre><code>将标识符、符号、关键字等读出，转换为文法可以识别的终结符与非终结符组成的串，等待识别。
+</code></pre><h4 id="3-NFA生成"><a href="#3-NFA生成" class="headerlink" title="3. NFA生成"></a>3. NFA生成</h4><p>步骤：</p>
+<ul>
+<li>① 遍历每一个项目 <code>S</code></li>
+<li><p>② 找当前加点位置的下一个字符 <code>C</code></p>
+<ul>
+<li><p>a. <strong>如果 <code>C</code> 是终结符，说明没有空边的情况</strong><br><strong>操作</strong>：需要将 <code>S</code> 中的点右移一位得到 <code>S&#39;</code>，再遍历整个项目集寻找与之匹配的项目 <code>A</code>，<code>A</code> 就是 <code>S</code> 的后继，加入NFA图，值为该终结符<br><strong>例如</strong>：<code>S-&gt;.aE ====== a ======&gt; S-&gt;a.E</code></p>
+</li>
+<li><p>b. <strong>如果 <code>C</code> 是非终结符，此时存在空边</strong>。譬如，<code>S-&gt;@E, E-&gt;@aB</code>，<code>S</code> 等待 <code>E</code> 的输入，其实就是等待 <code>a</code> 的输入。也就是 <code>S</code> 间接推导到 <code>aB</code>。<br><strong>操作</strong>：<br>i. 将 <code>S</code> 加点右移一位得到 <code>S&#39;</code>，若点在项目的最右位置，说明此时需要接收点之前的非终结符，遍历整个项目找到与 <code>S&#39;</code> 匹配的项目下标，加入NFA图，值为该非终结符。<br><strong>例如</strong>：<code>S-&gt;@E ====== E ======&gt; S-&gt;E@ , 匹配S-&gt;E@</code><br>ii. 将 <code>S</code> 加点右移一位得到 <code>S&#39;</code>，若点不在项目的最右位置，需要遍历整个项目集，寻找 以 <code>S</code> 加点右侧第一个非终结符为开始 的项目集合 <code>{E}</code> ，并且 <code>E</code> 的加点一定是在产生式右部的最左侧, 将它们加入NFA图，值为空边（用<code>~</code>表示，与空字符进行区分）<br><strong>例如</strong>：<code>S-&gt;@EB ====== ~ ======&gt; E-&gt;@aA, E-&gt;@B</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-Closure-生成"><a href="#4-Closure-生成" class="headerlink" title="4. Closure 生成"></a>4. Closure 生成</h4><p>步骤：</p>
+<ul>
+<li>① 读取NFA，每一个点坐标为<code>(m,n)</code>，<code>m</code> , <code>n</code> 代表两个项目，遍历每行构造Closure。</li>
+<li>② 如果 <code>n</code> 对应项目 已经被加入closure, 则不再以 n 作为源进行查找，即查找到第 <code>n</code>行，直接跳过。</li>
+<li>③ 递归<ul>
+<li>a. 如果NFA途中显示 <code>(m,n)</code> 值为<code>~</code>, 如果该项目还不在 <code>m</code> 构造的Closure中，则递归找该项目的空边，将其也加入Closure中，直到找到一个不含空边的项目为止。</li>
+<li>b. 如果NFA途中显示 <code>(m,n)</code> 值不为<code>~</code>，也不为空, 如果该项目还不在 <code>m</code> 构造的Closure中，将其加入。</li>
+<li>c. 如果遍历完一行发现为空，说明该状态可能为点在最右侧的状态，即需要归约的状态，需要构造一个Closure只包含该项目。</li>
+</ul>
+</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>使用这种方法构造的Closure并不是真正意义的Closure，可能会出现有多余的Closure的情况， 出现这种情况需要将多余的Closure合并。</li>
+</ul>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 终 -------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
+          
+            <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
+          
+            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/liysuzy/2018/10/24/装好虚拟机需要做的/" rel="next" title="装好虚拟机需要做~">
+                <i class="fa fa-chevron-left"></i> 装好虚拟机需要做~
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/liysuzy/2018/10/31/语法分析器  python/" rel="prev" title="SLR语法分析器 python实现">
+                SLR语法分析器 python实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -354,6 +570,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -374,8 +594,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -491,6 +720,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text">一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text">二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-我的推导方式"><span class="nav-number">2.1.</span> <span class="nav-text">I. 我的推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-实现"><span class="nav-number">2.2.</span> <span class="nav-text">II. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.2.2.</span> <span class="nav-text">1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.2.3.</span> <span class="nav-text">2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-NFA生成"><span class="nav-number">2.2.4.</span> <span class="nav-text">3. NFA生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Closure-生成"><span class="nav-number">2.2.5.</span> <span class="nav-text">4. Closure 生成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">3.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -633,6 +878,10 @@
   
 
   
+  <script type="text/javascript" src="/liysuzy/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/liysuzy/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

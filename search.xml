@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SLR语法分析器 python实现]]></title>
+    <url>%2Fliysuzy%2F2018%2F10%2F31%2F%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%20%20python%2F</url>
+    <content type="text"><![CDATA[一、语法分析器做什么二、自底向上的语法分析器的实现I. 推导方式输入：文法$G=(V,T,P,S)$的拓广文法$G’$输出：$G’$的$LR(0)$分析表。即$action$和$goto$表 步骤： ① 构造$I_0$。$I_0 = CLOSURE( \lbrace S’ \rightarrow .S \rbrace )$ ② 通过$GO(I_i, X)$函数求出$LR(0)$的项目集规范族$C= \lbrace I_0,I_1,…,I_n \rbrace $ ③ 遍历项目及规范族$C$，$I_0$对应初始状态0，$I_i$对应状态$i$ (1) 若项目$A→α·aβ$属于$I_k$且转换函数$GO(I_k,a)= I_j$，当$a$为终结符时则置$ACTION[k,a]$为$S_j$。 (2) 若项目$A→α·$ 属于$I_k$，则对任何终结符$a$ 和’#’置$ACTION[k,a]$和$ACTION$[k,#]为$r_j$，$j$为在文法$G′$中某产生式$A→α$的序号。 (3) 若$GO(Ik,A)＝Ij$，则置$GOTO[k,A]$为$G_j$，其中A为非终结符。 (4) 若项目$S′→S·$属于$Ik$，则置$ACTION$[k,#]为$acc$，表示接受。 II. 关键函数1. CLOSURE(J) 函数 即求J中每一项的闭包。 也可以用递归。12345678function CLOSURE(J): I = J 重复执行： for I 中每个项目，形如A-&gt;α.Bβ，执行： for 增广文法中每一个以B开始的产生式，B-&gt;γ，执行： if 以B开始的加点最左侧的产生式，B-&gt;.γ 不在 I 中，将其加入 I 中 直到 I 不再增大 返回 I 2. GO(I,X) 函数12345function GO(I,X): J = Φ for I 中每一个项目，形如A-&gt;α.Xβ，执行： J = J ∪ &#123;A-&gt;αX.β&#125;，即将点右移一位。 返回 CLOSURE(J)，即返回 J 的闭包 3. 如何使用CLOSURE(J) GO(I,X) 以下，大写字母为非终结符，小写字母或符号为终结符 文法：$G = \lbrace S\rightarrow E, E\rightarrow E+T, E\rightarrow T, T\rightarrow T*F, T\rightarrow F, F\rightarrow (E), F\rightarrow g \rbrace ​$ ① 构造 $I_0$。即求增广文法的第一个产生式的闭包 $CLOSURE( \lbrace S \rightarrow .E \rbrace )$。 即 ` CLOSURE(J), J = {S-&gt;.E}, E是非终结符，所以找以E为开始的点在产生式右部的开始的产生式。E-&gt;.T,T仍为非终结符，所以再像E一样找T，把它们都加入J。 ② 利用$GO(I_0, X)$构造$I_i$ 第①步求出了 $I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace $ (1) 首先找出$I_0$中所有点后的字符，$CHARS = \lbrace E,T,F,(,g \rbrace $ (2) 每一个$CHARS$中的字符都会作为$GO(I_0,X)中的参数X$ a. 求$GO(I_0, E)$,得到$I_1$ 此时$X$为$E$， 即形如$A \rightarrow α.Xβ$的产生式为$ \lbrace S\rightarrow .E,E\rightarrow .E+T \rbrace $ 因此 $J = Φ ∪ \lbrace S\rightarrow E.,E\rightarrow E.+T \rbrace $ 然后求$CLOSURE(J)$,返回$I_1$ b. 求$GO(I_0, T)$，得到$I_2$, 同上 …….. e. 求$GO(I_0, g)$，得到$I_5$, 同上 (3) 再找出$I_1$中所有点后的字符，$CHARS = \lbrace + \rbrace $ f. 求$GO(I_1, +)$，得到$I_6$, 同上…… III. 实现0. 数据结构 python 列表、集合 1. 项目生成步骤： ① 读取文法文件，存入列表 ② 遍历列表的所有元素，为其加点，从产生式的右边的第一个符号的左侧开始加点，点每次右移一位，直到移到最右侧，这些标有点的产生式就是文法的LR(0)项目，即 产生式：S-&gt;AB; 项目：(1) S-&gt;.AB (2) S-&gt;A.B (3) S-&gt;AB. 读取文法后，将终结符、非终结符分别存入终结符列表、非终结符列表，便于之后的判断。 2. 读取规范句型将标识符、符号、关键字等读出，转换为文法可以识别的终结符与非终结符组成的串，等待识别。 3. CLOSURE, GO函数生成CLOSURE(J)12345678910111213141516171819202122232425# 为了与列表CLOSURE区分，我使用了CLOSURE FUNCTION 的简写 CLOSUREFdef CLOSUREF(J): tempClosure = [] for i in J: nodePosition = i.index(&apos;@&apos;) if (nodePosition == (len(i) - 1)) or ((i[nodePosition + 1]) in TERMINATOR): # 点在最后一位 或 点后是终结符 tempClosure.append(i) elif((i[nodePosition + 1]) in NONTERMINATOR): # 点后为非终结符 tempClosure.append(i) searchClosure(i[nodePosition+1], tempClosure) # 传入S-&gt;@B 中的 B，即找以 B 为开始的产生式 if tempClosure in CLOSURE: # 如果当前生成的CLOSURE已经生成过了，则直接返回之前生成的相同的CLOSURE return CLOSURE[CLOSURE.index(tempClosure)] CLOSURE.append(tempClosure) return tempClosuredef searchClosure(c, tempClosure): for i in grammarWithNode: # 遍历所有项目 if i[0] != c: continue if i[1] == &apos;@&apos;: # 点在产生式右部的开始 tempClosure.append(i) if c != i[2] and i[2] in NONTERMINATOR : # 点后的仍然是非终结符，如 E searchClosure(i[2], tempClosure) # 递归找以 E 为产生式开始的，且点在产生式右部的开始 GO(I,X)12345678910111213def GO(I,X): J = [] for i in I: nodeIndex = i.index(&apos;@&apos;) if nodeIndex == len(i) - 1: continue if i[nodeIndex + 1] != X: continue moveRightStr = nodeRightMove(i) # 将点右移一位 J.append(moveRightStr) return CLOSUREF(J) 4. 求FIRST、FOLLOW集FIRST: 寻找最左终结符 递归如：求 $ S \rightarrow Eb $ 求S的FIRST集，E为终结符。$ S \rightarrow E, E \rightarrow a $ 相当于$ S \rightarrow a $, 因此E的最左终结符一定是S的 $ E \rightarrow a , E \rightarrow T $ 同理，T的终结符集一定是E的子集，依次向下递归即可。 FOLLOW: 寻找每个非终结符右侧的终结符，（不考虑空串的情况时）有三种情况: ① $ A \rightarrow aBb $, $B$为非终结符，$b$为终结符，$ FOLLOW(B) = FOLLOW(B) ∪ \lbrace b \rbrace $ ② $ A \rightarrow aB $, $B$为非终结符，$ E \rightarrow Af $ 即 $ E \rightarrow aBf $， 因此$A$的$FOLLOW$集就是B的$FOLLOW$集的一个子集，因此 $ FOLLOW(B) = FOLLOW(B) ∪ FOLLOW(A) $ ③ $ A \rightarrow aBE $, $B$为非终结符，$E$为非终结符，$ E \rightarrow a $ 即 $ A \rightarrow aBa $，因此$E$的$FIRST$集就是$B$的$FOLLOW$集的一个子集，因此 $ FOLLOW(B) = FOLLOW(B) ∪ FIRST(E) $重复这个操作，直到所有$FOLLOW$集不再增大为止 5. 生成SLR分析表6. 进行语法分析]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>编译原理</tag>
+        <tag>语法分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SLR语法分析器 C++实现]]></title>
+    <url>%2Fliysuzy%2F2018%2F10%2F28%2F%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%20c%2B%2B%2F</url>
+    <content type="text"><![CDATA[一、语法分析器做什么二、自底向上的语法分析器的实现I. 我的推导方式步骤： 分析输入流，需要使用SLR分析表，[SLR(1),1省略] 得到SLR分析表，需要用DFA生成 得到DFA，需要用NFA生成，NFA-&gt;DFA需要用子集构造法，也就是需要得到Closure 得到NFA，需要得到文法中所有项目 得到项目，需要给文法加点 至此就推导到最开始的文法了 这种做法会有疏漏，但可以应对大部分的文法。本身比较菜，课本上的算法着实很难懂。。。 II. 实现0. 数据结构 文法：string 数组 项目集：vector&lt;itemStruct&gt; itemStruct为结构体 Closure：vector&lt;closureStruct&gt; item等 1. 项目生成步骤： ① 读取文法文件，将所有文法存入一种数据结构，我选择了string数组 ② 遍历string数组的所有元素，为其加点，从产生式的右边的第一个符号的左侧开始加点，点每次右移一位，直到移到最右侧，这些标有点的产生式就是文法的LR(0)项目，即 产生式：S-&gt;AB; 项目：(1) S-&gt;.AB (2) S-&gt;A.B (3) S-&gt;AB. 读取文法后，将终结符、非终结符分别存入数组，便于之后的判断。 2. 读取规范句型将标识符、符号、关键字等读出，转换为文法可以识别的终结符与非终结符组成的串，等待识别。 3. NFA生成步骤： ① 遍历每一个项目 S ② 找当前加点位置的下一个字符 C a. 如果 C 是终结符，说明没有空边的情况操作：需要将 S 中的点右移一位得到 S&#39;，再遍历整个项目集寻找与之匹配的项目 A，A 就是 S 的后继，加入NFA图，值为该终结符例如：S-&gt;.aE ====== a ======&gt; S-&gt;a.E b. 如果 C 是非终结符，此时存在空边。譬如，S-&gt;@E, E-&gt;@aB，S 等待 E 的输入，其实就是等待 a 的输入。也就是 S 间接推导到 aB。操作：i. 将 S 加点右移一位得到 S&#39;，若点在项目的最右位置，说明此时需要接收点之前的非终结符，遍历整个项目找到与 S&#39; 匹配的项目下标，加入NFA图，值为该非终结符。例如：S-&gt;@E ====== E ======&gt; S-&gt;E@ , 匹配S-&gt;E@ii. 将 S 加点右移一位得到 S&#39;，若点不在项目的最右位置，需要遍历整个项目集，寻找 以 S 加点右侧第一个非终结符为开始 的项目集合 {E} ，并且 E 的加点一定是在产生式右部的最左侧, 将它们加入NFA图，值为空边（用~表示，与空字符进行区分）例如：S-&gt;@EB ====== ~ ======&gt; E-&gt;@aA, E-&gt;@B 4. Closure 生成步骤： ① 读取NFA，每一个点坐标为(m,n)，m , n 代表两个项目，遍历每行构造Closure。 ② 如果 n 对应项目 已经被加入closure, 则不再以 n 作为源进行查找，即查找到第 n行，直接跳过。 ③ 递归 a. 如果NFA途中显示 (m,n) 值为~, 如果该项目还不在 m 构造的Closure中，则递归找该项目的空边，将其也加入Closure中，直到找到一个不含空边的项目为止。 b. 如果NFA途中显示 (m,n) 值不为~，也不为空, 如果该项目还不在 m 构造的Closure中，将其加入。 c. 如果遍历完一行发现为空，说明该状态可能为点在最右侧的状态，即需要归约的状态，需要构造一个Closure只包含该项目。 问题： 使用这种方法构造的Closure并不是真正意义的Closure，可能会出现有多余的Closure的情况， 出现这种情况需要将多余的Closure合并。 未完待续]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>编译原理</tag>
+        <tag>语法分析</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[装好虚拟机需要做~]]></title>
     <url>%2Fliysuzy%2F2018%2F10%2F24%2F%E8%A3%85%E5%A5%BD%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2F</url>
     <content type="text"><![CDATA[Virtual Box一、 增强功能1. 增强功能的作用 实现客户机和主机间的鼠标平滑移动 安装虚拟显卡驱动，实现2D和3D视频图形加速，自动调整客户机分辨率 与主机共享剪贴板的内容，也就是说直接可以在主机、客户机之间复制、粘贴（不支持文件） 与主机实现文件共享（共享文件夹） 等等…… 2. 安装增强功能 ① 进入系统 ② 点击菜单“设备”，点击下拉菜单“安装增强功能”。 ③ 弹出对话框，点击运行，会弹出输入密码对话框，输入即可。 ④ 安装程序自动安装，直到出现“Press Return to close this window…”，按回车结束，重启系统即可。 ⑤ 除此之外，需要开启共享剪切板才可以在主机和虚拟机之间复制剪贴板内容。 装完增强功能后，ubuntu关机时千万不要强制关机，要按正常步骤关机，否则增强功能可能会消失 3. 共享文件夹注意：共享文件夹的前提是安装增强功能！ ① 设定共享文件夹。点击菜单“设备”，点击下拉菜单“共享文件夹”，点击右侧菜单“共享文件夹”。 ② 点击右侧加号，选择一个文件夹share，选择后点击自动挂载，固定分配。 ③ 打开命令行，需要输入以下命令 进入/mnt： cd /mnt 创建gongxiang目录： sudo mkdir gongxiang 将“share”目录与“gongxiang”目录进行关联： sudo mount -t vboxsf share /mnt/gongxiang 参数:”share”位置时你windows下的文件夹， “/mnt/gongxiang”位置时你linux下刚创建的哪个文件夹的绝对路径。 ④ 重启系统，现在我们可以在文件资源管理器中看到该文件夹，但是打开会报错 这时候我们需要获取权限，把本机用户加入到vboxsf之中 sudo adduser liysuzy vboxsf ⑤ 再次重启系统，以后就可以在共享文件夹下操作了！]]></content>
@@ -21,9 +48,9 @@
         <category>实验</category>
       </categories>
       <tags>
+        <tag>编译原理</tag>
         <tag>C++</tag>
         <tag>C</tag>
-        <tag>编译原理</tag>
         <tag>词法分析</tag>
       </tags>
   </entry>
