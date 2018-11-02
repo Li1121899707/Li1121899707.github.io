@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="编译原理,Python,语法分析," />
+  <meta name="keywords" content="Python,编译原理,语法分析," />
 
 
 
@@ -98,14 +98,14 @@
 
 
 <meta name="description" content="一、语法分析器做什么  二、自底向上的语法分析器的实现  I. 推导方式 输入：文法 $  G=(V,T,P,S)  $ 的拓广文法 $ G’ $ 输出： $  G’  $ 的 $ LR(0) $ 分析表。即 $ action $ 和 $ goto $ 表 步骤：  ① 构造 $ I_0 $ 。 $ I_0 = CLOSURE( \lbrace S’ \rightarrow .S  \rbrac">
-<meta name="keywords" content="编译原理,Python,语法分析">
+<meta name="keywords" content="Python,编译原理,语法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SLR语法分析器 python实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/10/31/语法分析器  python/index.html">
 <meta property="og:site_name" content="LiySuzy">
 <meta property="og:description" content="一、语法分析器做什么  二、自底向上的语法分析器的实现  I. 推导方式 输入：文法 $  G=(V,T,P,S)  $ 的拓广文法 $ G’ $ 输出： $  G’  $ 的 $ LR(0) $ 分析表。即 $ action $ 和 $ goto $ 表 步骤：  ① 构造 $ I_0 $ 。 $ I_0 = CLOSURE( \lbrace S’ \rightarrow .S  \rbrac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-31T04:27:30.170Z">
+<meta property="og:updated_time" content="2018-11-02T03:25:21.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLR语法分析器 python实现">
 <meta name="twitter:description" content="一、语法分析器做什么  二、自底向上的语法分析器的实现  I. 推导方式 输入：文法 $  G=(V,T,P,S)  $ 的拓广文法 $ G’ $ 输出： $  G’  $ 的 $ LR(0) $ 分析表。即 $ action $ 和 $ goto $ 表 步骤：  ① 构造 $ I_0 $ 。 $ I_0 = CLOSURE( \lbrace S’ \rightarrow .S  \rbrac">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,484 字
+                  2,131 字
                 </span>
               
 
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">阅读时长 </span>
                 
                 <span title="阅读时长">
-                  7 分钟
+                  10 分钟
                 </span>
               
             </div>
@@ -446,10 +446,10 @@
 <li>② 通过 $ GO(I_i, X) $ 函数求出 $ LR(0) $ 的项目集规范族 $ C= \lbrace I_0,I_1,…,I_n  \rbrace  $</li>
 <li>③ 遍历项目及规范族 $ C $ ， $ I_0 $ 对应初始状态 $ 0 $， $ I_i $ 对应状态 $ i $
 <ul>
-<li>(1) 若项目 $ A→α·aβ $ 属于 $ I_k $ 且转换函数 $ GO(I_k,a)= I_j $ ，当 $ a $ 为终结符时则置 $ ACTION[k,a] $ 为 $ S_j $ 。</li>
+<li>(1) 若项目 $ A→α·aβ $ 属于 $ I_k $ 且转换函数 $ GO(I_k,a)= I_j $ ，当 $ a $ 为终结符时，则置 $ ACTION[k,a] $ 为 $ S_j $ 。</li>
 <li>(2) 若项目 $ A→α· $  属于 $ I_k $ ，则对任何终结符 $ a $  和’#'置 $ ACTION[k,a] $ 和 $ ACTION $ [k,#]为 $ r_j $ ， $ j $ 为在文法 $ G′ $ 中某产生式 $ A→α $ 的序号。</li>
-<li>(3) 若 $ GO(Ik,A)＝Ij $ ，则置 $ GOTO[k,A] $ 为 $ G_j $ ，其中 $ A $ 为非终结符。</li>
-<li>(4) 若项目 $ S′→S· $ 属于 $ Ik $ ，则置 $ ACTION $ [k,#]为 $ acc $ ，表示接受。</li>
+<li>(3) 若 $ GO(I_k,A)＝I_j $ ，则置 $ GOTO[k,A] $ 为 $ G_j $ ，其中 $ A $ 为非终结符。</li>
+<li>(4) 若项目 $ S′→S· $ 属于 $ I_k $ ，则置 $ ACTION $ [k,#]为 $ acc $ ，表示接受。</li>
 </ul>
 </li>
 </ul>
@@ -461,10 +461,19 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function CLOSURE(J):</span><br><span class="line">  I = J</span><br><span class="line">  重复执行：</span><br><span class="line">    for I 中每个项目，形如A-&gt;α.Bβ，执行：</span><br><span class="line">      for 增广文法中每一个以B开始的产生式，B-&gt;γ，执行：</span><br><span class="line">        if 以B开始的加点最左侧的产生式，B-&gt;.γ 不在 I 中，将其加入 I 中</span><br><span class="line">  直到 I 不再增大</span><br><span class="line">  返回 I</span><br></pre></td></tr></table></figure>
 <h4 id="2-goix-函数"><a class="markdownIt-Anchor" href="#2-goix-函数"></a> 2. GO(I,X) 函数</h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function GO(I,X):</span><br><span class="line">  J = Φ</span><br><span class="line">  for I 中每一个项目，形如A-&gt;α.Xβ，执行：</span><br><span class="line">    J = J ∪ &#123;A-&gt;αX.β&#125;，即将点右移一位。</span><br><span class="line">  返回 CLOSURE(J)，即返回 J 的闭包</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数：
+<ul>
+<li>$ I $ 为项目集闭包。</li>
+<li>$ \lbrace X \rbrace $ 为 $ I $ 中点后字符的集合，因此 $ X $ 就是其中一项。<br>
+比如：$ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace  $ ，则 $ \lbrace X \rbrace  = \lbrace E, T, F, (, g \rbrace $，需要把 $ X $ 中每一项都传入 $ GO $ 函数进行计算。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function GO(I,X):</span><br><span class="line">  J = Φ</span><br><span class="line">  for I 中每一个项目，形如A-&gt;α.Xβ（点后面的字符为 X ），执行：</span><br><span class="line">    J = J ∪ &#123;A-&gt;αX.β&#125;，即将点右移一位。</span><br><span class="line">  返回 CLOSURE(J)，即返回 J 的闭包</span><br></pre></td></tr></table></figure>
 <h4 id="3-如何使用-closurej-goix"><a class="markdownIt-Anchor" href="#3-如何使用-closurej-goix"></a> 3. 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</h4>
 <blockquote>
-<p>以下，大写字母为非终结符，小写字母或符号为终结符</p>
+<p><strong>以下，大写字母为非终结符，小写字母或符号为终结符</strong></p>
 </blockquote>
 <blockquote>
 <p>文法： $ G = \lbrace S\rightarrow E, E\rightarrow E+T, E\rightarrow T, T\rightarrow T*F, T\rightarrow F, F\rightarrow (E), F\rightarrow g \rbrace ​ $</p>
@@ -472,15 +481,15 @@
 <ul>
 <li>① 构造  $ I_0 $ 。即求增广文法的第一个产生式的闭包  $ CLOSURE( \lbrace S \rightarrow .E \rbrace ) $ 。
 <ul>
-<li>即 $ CLOSURE(J), J = {S \rightarrow .E} $ E是非终结符，所以找以E为开始的点在产生式右部的开始的产生式。$ E-&gt;.T % ,$ T $ 仍为非终结符，所以再像$ E $一样找 $ T $，把它们都加入 $ J $。</li>
+<li>即 $ CLOSURE(J), J = {S \rightarrow .E} $ E是非终结符，所以找以E为开始的点在产生式右部的开始的产生式。$ E \rightarrow .T % $ , $ T $ 仍为非终结符，所以再像 $ E $ 一样找 $ T $，把它们都加入 $ J $。</li>
 </ul>
 </li>
 <li>② 利用 $ GO(I_0, X) $ 构造 $ I_i $
 <ul>
 <li>第①步求出了<br>
 $ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace  $</li>
-<li>(1) 首先找出 $ I_0 $ 中所有点后的字符， $ CHARS = \lbrace E,T,F,(,g \rbrace  $</li>
-<li>(2) 每一个 $ CHARS $ 中的字符都会作为 $ GO(I_0,X)中的参数X $
+<li>(1) 首先找出 $ I_0 $ 中所有点后的字符， $ \lbrace X \rbrace = \lbrace E,T,F,(,g \rbrace  $</li>
+<li>(2) 每一个 $ \lbrace X \rbrace $ 中的字符都会作为 $ GO(I_0,X)中的参数X $
 <ul>
 <li>a. 求 $ GO(I_0, E) $ ,得到 $ I_1 $<br>
 此时 $ X $ 为 $ E $ ， 即形如 $ A \rightarrow α.Xβ $ 的产生式为 $  \lbrace S\rightarrow .E,E\rightarrow .E+T \rbrace  $<br>
@@ -491,7 +500,7 @@ $ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow
 <li>e. 求 $ GO(I_0, g) $ ，得到 $ I_5 $ , 同上</li>
 </ul>
 </li>
-<li>(3) 再找出 $ I_1 $ 中所有点后的字符， $ CHARS = \lbrace + \rbrace  $
+<li>(3) 再找出 $ I_1 $ 中所有点后的字符， $ \lbrace X \rbrace = \lbrace + \rbrace  $
 <ul>
 <li>f. 求 $ GO(I_1, +) $ ，得到 $ I_6 $ , 同上<br>
 …</li>
@@ -499,6 +508,7 @@ $ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow
 </li>
 </ul>
 </li>
+<li>③ 所有 $ I_x $ 的集合就是项目及规范族 $ C $ , $ C= \lbrace I_0, I_1, …, I_n \rbrace $</li>
 </ul>
 <h3 id="iii-实现"><a class="markdownIt-Anchor" href="#iii-实现"></a> III. 实现</h3>
 <h4 id="0-数据结构"><a class="markdownIt-Anchor" href="#0-数据结构"></a> 0. 数据结构</h4>
@@ -538,6 +548,20 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
 重复这个操作，直到所有 $ FOLLOW $ 集不再增大为止</li>
 </ul>
 <h4 id="5-生成slr分析表"><a class="markdownIt-Anchor" href="#5-生成slr分析表"></a> 5. 生成SLR分析表</h4>
+<ul>
+<li>① 首先构造 $ I_0 $ , $ I_0 = CLOSURE( \lbrace S \rightarrow E \rbrace ) $，然后根据 &quot;3.&quot;的描述，求出 $ C = \lbrace I_0, I_1, …, I_n \rbrace $</li>
+<li>② $ I_0 $ 为初始状态。构造 $ action $ 表与 $ goto $ 表，$ action $ 表<strong>列标</strong>所有终结符和’#’, $ goto $表<strong>列标</strong>为所有终结符，<strong>行标</strong>均为所有项目及规范族的下标。</li>
+<li>③ 令初始状态 $ k = 0 $, k递增进行如下循环：
+<ul>
+<li>(1) 如果 $ A \rightarrow α.aβ $ 在 $ I_k $ 中，并且 $ a $为<strong>终结符</strong>，那么求一下 $ GO(I_k, a) $ 的值是 $ C $中的哪一项，如果求出是 $ I_k $, 则 $ action[k,a] = Sj <span class="katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;，&#039; at position 1: ，̲即在行标为">，即在行标为</span> k $, 列标为 $ a $的位置上写入 $ Sj $。</li>
+<li>(2) 如果 $ A \rightarrow α.Bβ $ 在 $ I_k $ 中，并且 $ B $为<strong>非终结符</strong>，那么那么求一下 $ GO(I_k, B) $ 的值是 $ C $中的哪一项，如果求出是 $ I_k $, 则 $ goto[k,B] = Sj <span class="katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;，&#039; at position 1: ，̲即在行标为">，即在行标为</span> k $, 列标为 $ B $的位置上写入 $ j $。</li>
+<li>(3) 如果 $ A \rightarrow α. $ , 并且 $ A \rightarrow α $ 在（<strong>不加点</strong>）文法 $ G $ 中是第 $ j <span class="katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;个&#039; at position 1: 个̲产生式，那么对于每个终结符（包…">个产生式，那么对于每个终结符（包括#）</span> t $,如果 $ t ∈ FOLLOW(A) $，（A为产生式左部）， 则 $ action[k,t] = rj <span class="katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;，&#039; at position 1: ，̲即在行标为">，即在行标为</span> k $, 列标为满足要求的 $ t $的位置上写入 $ rj $。</li>
+<li>(4) 如果当前项目为增广文法新加入的项目的中介状态 $ S \rightarrow E. ∈ I_k $， 则 $ action <span class="katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;#&#039; at position 4: [k,#̲]">[k,#]</span>  = acc $。</li>
+</ul>
+</li>
+<li>遍历完$C <span class="katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;中&#039; at position 1: 中̲所有">中所有</span> I $ 以及 $ I $ 中所有项目后，$ SLR $ 分析表就生成了。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def generateSLR():</span><br><span class="line">    global action, goto</span><br><span class="line">    action = [[&apos; &apos; for col in range(len(TERMINATOR))] for row in range(len(CLOSURE))]</span><br><span class="line">    goto = [[&apos; &apos; for col in range(len(NONTERMINATOR))] for row in range(len(CLOSURE))]</span><br><span class="line">    for k in range(0, len(CLOSURE)):</span><br><span class="line">        for a in CLOSURE[k]: # Closure内各表达式</span><br><span class="line">            nodeIndex = a.index(&apos;@&apos;)</span><br><span class="line">            if nodeIndex == len(a) - 1:</span><br><span class="line">                grammarIndex = grammarOriginalLists.index(a[0:len(a)-1])</span><br><span class="line">                for ter in TERMINATOR:</span><br><span class="line">                    if a[0] == grammarOriginalLists[0][0]:</span><br><span class="line">                        action[k][TERMINATOR.index(&apos;#&apos;)] = &quot;a0&quot;</span><br><span class="line">                    elif ter in FOLLOW[NONTERMINATOR.index(a[0])]:</span><br><span class="line">                        action[k][TERMINATOR.index(ter)] = &quot;r&quot; + str(grammarIndex)</span><br><span class="line">            elif a[nodeIndex+1] in TERMINATOR:</span><br><span class="line">                resultClosure = GO(CLOSURE[k], a[nodeIndex+1])</span><br><span class="line">                aIndex = CLOSURE.index(resultClosure)</span><br><span class="line">                action[k][TERMINATOR.index(a[nodeIndex+1])] = &quot;S&quot; + str(aIndex)</span><br><span class="line">            elif a[nodeIndex+1] in NONTERMINATOR:</span><br><span class="line">                resultClosure = GO(CLOSURE[k], a[nodeIndex+1])</span><br><span class="line">                aIndex = CLOSURE.index(resultClosure)</span><br><span class="line">                goto[k][NONTERMINATOR.index(a[nodeIndex+1])] = &quot;G&quot; + str(aIndex)</span><br></pre></td></tr></table></figure>
 <h4 id="6-进行语法分析"><a class="markdownIt-Anchor" href="#6-进行语法分析"></a> 6. 进行语法分析</h4>
 
       
@@ -566,9 +590,9 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
       
         <div class="post-tags">
           
-            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
-          
             <a href="/liysuzy/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
           
             <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
           
