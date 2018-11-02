@@ -97,21 +97,21 @@
 
 
 
-<meta name="description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
+<meta name="description" content="在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立）    ## 一、语法分析器做什么  &amp;gt;   语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 &amp;gt;   一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传">
 <meta name="keywords" content="C++,C,编译原理,语法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SLR语法分析器 C++实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/10/28/语法分析器 c++/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
+<meta property="og:description" content="在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立）    ## 一、语法分析器做什么  &amp;gt;   语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 &amp;gt;   一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102170249.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102171057.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102171702.png">
-<meta property="og:updated_time" content="2018-11-02T09:22:35.709Z">
+<meta property="og:updated_time" content="2018-11-02T09:24:14.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLR语法分析器 C++实现">
-<meta name="twitter:description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
+<meta name="twitter:description" content="在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立）    ## 一、语法分析器做什么  &amp;gt;   语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 &amp;gt;   一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传">
 <meta name="twitter:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102170249.png">
 
 
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,590 字
+                  2,618 字
                 </span>
               
 
@@ -439,35 +439,27 @@
       
 
       
-        <h2 id="一-语法分析器做什么"><a class="markdownIt-Anchor" href="#一-语法分析器做什么"></a> 一、语法分析器做什么</h2>
-<blockquote>
-<p>语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。<br>
-一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。</p>
-</blockquote>
-<h2 id="二-自底向上的语法分析器的实现"><a class="markdownIt-Anchor" href="#二-自底向上的语法分析器的实现"></a> 二、自底向上的语法分析器的实现</h2>
-<h3 id="i-我的推导方式"><a class="markdownIt-Anchor" href="#i-我的推导方式"></a> I. 我的推导方式</h3>
-<p>步骤：</p>
-<ul>
-<li>
-<p>分析输入流，需要使用SLR分析表，[SLR(1),1省略]</p>
-</li>
-<li>
-<p>得到SLR分析表，需要用DFA生成</p>
-</li>
-<li>
-<p>得到DFA，需要用NFA生成，NFA-&gt;DFA需要用子集构造法，也就是需要得到Closure</p>
-</li>
-<li>
-<p>得到NFA，需要得到文法中所有项目</p>
-</li>
-<li>
-<p>得到项目，需要给文法加点</p>
-<p>至此就推导到最开始的文法了<br>
-<strong>这种做法会有疏漏，但可以应对大部分的文法。</strong></p>
-</li>
-</ul>
-<div class="note warning"><p>在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立）</p></div>
+        <div class="note warning"><p>在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立） </p></div>
 
+
+## 一、语法分析器做什么
+
+>   语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。
+>   一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。
+
+## 二、自底向上的语法分析器的实现
+
+### I. 我的推导方式
+
+步骤：
+- 分析输入流，需要使用SLR分析表，[SLR(1),1省略]
+- 得到SLR分析表，需要用DFA生成
+- 得到DFA，需要用NFA生成，NFA->DFA需要用子集构造法，也就是需要得到Closure
+- 得到NFA，需要得到文法中所有项目
+- 得到项目，需要给文法加点
+
+    至此就推导到最开始的文法了
+    **这种做法会有疏漏，但可以应对大部分的文法。**
 
 ### II. 实现
 
@@ -528,7 +520,8 @@
 
 #### 5. DFA 生成
 - 数据结构：
-undefined
+<pre><code>$  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 $ E $的子集，依次向下递归即可。
+</code></pre>
 
 - 在上一步，我们求出了所有的项目集规范族（其实此时并不是完全规范的，下面会讲为什么），**将C中的各项统称为Closure（闭包）**
 - 对每一个Closure中的`vector<int> itemIds`进行遍历，寻找该Closure可以指向谁。**如果把每个Closure看作节点，那么这一步就是寻找两个节点的边以及权值。**
@@ -551,54 +544,42 @@ undefined
   - ① 遍历整个DFA图，查找哪一行有重复的输入，将其合并。
   - ② 对于每个合并，要找其对应的两列是否也出现与其相同的情况。（如下图所示）
 
-<div class="note danger"><p>千万注意下图的情况！如果出现两次合并，Closure仍然是有重复的！因此当我们找到第一行的两个T时，要去找是否第五列、第六列也同时出现T，如果出现，在DFA图中直接将其删掉即可，这样就不会在第10行扫描的时候扫描到两个T。</p></div>
+<div class="note danger"><p>千万注意下图的情况！如果出现两次合并，Closure仍然是有重复的！因此当我们找到第一行的两个T时，要去找是否第五列、第六列也同时出现T，如果出现，在DFA图中直接将其删掉即可，这样就不会在第10行扫描的时候扫描到两个T。 </p></div>
 <p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102170249.png" alt=""></p>
-<h4 id="7-新的-dfa-生成"><a class="markdownIt-Anchor" href="#7-新的-dfa-生成"></a> 7. 新的 DFA 生成</h4>
-<ul>
+<h4 id="7-新的-DFA-生成"><a href="#7-新的-DFA-生成" class="headerlink" title="7. 新的 DFA 生成"></a>7. 新的 DFA 生成</h4><ul>
 <li><strong>将原先的DFA清空。</strong></li>
 <li>我们通过DFA 图的合并，得到了真正的项目及规范族C，因此利用这个新的C可以生成完全正确的DFA图，该图就是生成SLR分析表的基础。</li>
 </ul>
-<h4 id="8-求-first-follow-集"><a class="markdownIt-Anchor" href="#8-求-first-follow-集"></a> 8. 求 FIRST、FOLLOW 集</h4>
-<h5 id="first"><a class="markdownIt-Anchor" href="#first"></a> FIRST:</h5>
-<ul>
+<h4 id="8-求-FIRST、FOLLOW-集"><a href="#8-求-FIRST、FOLLOW-集" class="headerlink" title="8. 求 FIRST、FOLLOW 集"></a>8. 求 FIRST、FOLLOW 集</h4><h5 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST:"></a>FIRST:</h5><ul>
 <li>寻找最左终结符</li>
-<li>递归<br>
-如：求  $  S \rightarrow Eb  $  求S的FIRST集，E为终结符。 $  S \rightarrow E, E \rightarrow a  $  相当于 $  S \rightarrow a  $ , 因此E的最左终结符一定是S的<br>
-$  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 $ E $的子集，依次向下递归即可。</li>
+<li>递归<br>如：求  $  S \rightarrow Eb  $  求S的FIRST集，E为终结符。 $  S \rightarrow E, E \rightarrow a  $  相当于 $  S \rightarrow a  $ , 因此E的最左终结符一定是S的<pre><code>$  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 $ E $的子集，依次向下递归即可。
+</code></pre></li>
 </ul>
-<h5 id="follow"><a class="markdownIt-Anchor" href="#follow"></a> FOLLOW:</h5>
-<ul>
-<li>寻找每个非终结符右侧的终结符，（不考虑空串的情况时）<br>
-有三种情况:</li>
-<li>①  $  A \rightarrow aBb  $ ,  $ B $ 为非终结符， $ b $ 为终结符， $  FOLLOW(B) = FOLLOW(B) ∪ \lbrace b \rbrace  $</li>
-<li>②  $  A \rightarrow aB  $ ,  $ B $ 为非终结符， $  E \rightarrow Af  $  即  $  E \rightarrow aBf  $ ， 因此 $ A $ 的 $ FOLLOW $ 集就是B的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FOLLOW(A)  $</li>
-<li>③  $  A \rightarrow aBE  $ ,  $ B $ 为非终结符， $ E $ 为非终结符， $  E \rightarrow a  $  即  $  A \rightarrow aBa  $ ，因此 $ E $ 的 $ FIRST $ 集就是 $ B $ 的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FIRST(E)  $<br>
-重复这个操作，直到所有 $ FOLLOW $ 集不再增大为止</li>
+<h5 id="FOLLOW"><a href="#FOLLOW" class="headerlink" title="FOLLOW:"></a>FOLLOW:</h5><ul>
+<li>寻找每个非终结符右侧的终结符，（不考虑空串的情况时）<br>有三种情况:</li>
+<li>①  $  A \rightarrow aBb  $ ,  $ B $ 为非终结符， $ b $ 为终结符， $  FOLLOW(B) = FOLLOW(B) ∪ \lbrace b \rbrace  $ </li>
+<li>②  $  A \rightarrow aB  $ ,  $ B $ 为非终结符， $  E \rightarrow Af  $  即  $  E \rightarrow aBf  $ ， 因此 $ A $ 的 $ FOLLOW $ 集就是B的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FOLLOW(A)  $ </li>
+<li>③  $  A \rightarrow aBE  $ ,  $ B $ 为非终结符， $ E $ 为非终结符， $  E \rightarrow a  $  即  $  A \rightarrow aBa  $ ，因此 $ E $ 的 $ FIRST $ 集就是 $ B $ 的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FIRST(E)  $<br>重复这个操作，直到所有 $ FOLLOW $ 集不再增大为止</li>
 </ul>
-<h4 id="9-生成-slr-分析表"><a class="markdownIt-Anchor" href="#9-生成-slr-分析表"></a> 9. 生成 SLR 分析表</h4>
-<ul>
+<h4 id="9-生成-SLR-分析表"><a href="#9-生成-SLR-分析表" class="headerlink" title="9. 生成 SLR 分析表"></a>9. 生成 SLR 分析表</h4><ul>
 <li>① 读取DFA图的每个坐标。</li>
 <li>② 判断当前的Closure是否有归约状态（含点在最右侧的产生式），如果有，则需要在该行终结符列下加入rj，j为归约到的文法中的第几项。（需要判断终结符是否在FOLLOW（X）集中，X为归约式的最左部）</li>
 <li>③ 如果该坐标的值是非终结符，执行GOTO函数</li>
 <li>④ 如果该坐标的值是终结符，执行ACTION函数</li>
 <li>⑤ 如果出现了既不是终结符也不是非终结符的字符（比如空边），说明<strong>DFA图存在错误！SLR表无法生成！</strong></li>
-<li>⑥ 最后，需要找出增广文法加入的产生式的终结状态（即点在最右侧），设其属于item的下标为index，&quot;#&quot;属于的下标为sharpIndex，则ACTION[index][sharpIndex] = “acc”</li>
+<li>⑥ 最后，需要找出增广文法加入的产生式的终结状态（即点在最右侧），设其属于item的下标为index，”#”属于的下标为sharpIndex，则ACTION[index][sharpIndex] = “acc”</li>
 </ul>
-<h5 id="action-函数"><a class="markdownIt-Anchor" href="#action-函数"></a> ACTION 函数</h5>
-<ul>
+<h5 id="ACTION-函数"><a href="#ACTION-函数" class="headerlink" title="ACTION 函数"></a>ACTION 函数</h5><ul>
 <li><code>ACTION(int closurId, char inTChar)</code></li>
-<li>ACTION函数的参数：
-<ul>
+<li>ACTION函数的参数：<ul>
 <li>第一个：当前坐标的行标，也就是当前坐标所属Closure的下标。</li>
 <li>第二个：坐标的值（终结符）</li>
 </ul>
 </li>
-<li>ACTION函数的作用：
-<ul>
+<li>ACTION函数的作用：<ul>
 <li>查找出 当前Closure输入该终结符可以指向的Closure的下标destIndex</li>
-<li>在action表中加入一项。
-<ul>
-<li>位置：行标为closureId, 列标为当前终结符所属下标，加入的值是&quot;S&quot; + destIndex。</li>
+<li>在action表中加入一项。<ul>
+<li>位置：行标为closureId, 列标为当前终结符所属下标，加入的值是”S” + destIndex。</li>
 </ul>
 </li>
 </ul>
@@ -609,20 +590,16 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
 <li>如上图所示，我们需要在action[0, (] 处添加S3，在action[1,g] 处添加S11.</li>
 </ul>
 <p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102171702.png" alt=""></p>
-<h6 id="goto-函数"><a class="markdownIt-Anchor" href="#goto-函数"></a> GOTO 函数</h6>
-<ul>
+<h6 id="GOTO-函数"><a href="#GOTO-函数" class="headerlink" title="GOTO 函数"></a>GOTO 函数</h6><ul>
 <li><code>GOTO(int closurId, char inNTChar)</code></li>
-<li>ACTION函数的参数：
-<ul>
+<li>ACTION函数的参数：<ul>
 <li>第一个：当前坐标的行标，也就是当前坐标所属Closure的下标。</li>
 <li>第二个：坐标的值（非终结符）</li>
 </ul>
 </li>
-<li>GOTO函数的作用：
-<ul>
+<li>GOTO函数的作用：<ul>
 <li>查找出 当前Closure输入该非终结符可以指向的Closure的下标destIndex</li>
-<li>在action表中加入一项。
-<ul>
+<li>在action表中加入一项。<ul>
 <li>位置：行标为closureId, 列标为当前终结符所属下标，加入的值为destIndex。</li>
 </ul>
 </li>
@@ -631,8 +608,7 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
 </ul>
 <p>同上，不再举例。归约状态也如此。</p>
 <p><strong>通过这两个函数，SLR分析表就可以生成了。</strong></p>
-<h4 id="10-进行语法分析"><a class="markdownIt-Anchor" href="#10-进行语法分析"></a> 10. 进行语法分析</h4>
-<p>利用C++栈模拟栈的操作，状态栈、符号栈分别存放当前状态、当前的符号，输入流不断进行输入，状态与当前输入利用SLR表进行转换，得到新的状态与符号。</p>
+<h4 id="10-进行语法分析"><a href="#10-进行语法分析" class="headerlink" title="10. 进行语法分析"></a>10. 进行语法分析</h4><p>利用C++栈模拟栈的操作，状态栈、符号栈分别存放当前状态、当前的符号，输入流不断进行输入，状态与当前输入利用SLR表进行转换，得到新的状态与符号。</p>
 </int></closurestruct></itemstruct>
       
     </div>
@@ -879,7 +855,7 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text"> 一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text"> 二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-我的推导方式"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 我的推导方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-新的-dfa-生成"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 7. 新的 DFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-求-first-follow-集"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 8. 求 FIRST、FOLLOW 集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#first"><span class="nav-number">2.1.2.1.</span> <span class="nav-text"> FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#follow"><span class="nav-number">2.1.2.2.</span> <span class="nav-text"> FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-生成-slr-分析表"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 9. 生成 SLR 分析表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#action-函数"><span class="nav-number">2.1.3.1.</span> <span class="nav-text"> ACTION 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#goto-函数"><span class="nav-number">2.1.3.1.1.</span> <span class="nav-text"> GOTO 函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-进行语法分析"><span class="nav-number">2.1.4.</span> <span class="nav-text"> 10. 进行语法分析</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-新的-DFA-生成"><span class="nav-number">1.</span> <span class="nav-text">7. 新的 DFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-求-FIRST、FOLLOW-集"><span class="nav-number">2.</span> <span class="nav-text">8. 求 FIRST、FOLLOW 集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#FIRST"><span class="nav-number">2.1.</span> <span class="nav-text">FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FOLLOW"><span class="nav-number">2.2.</span> <span class="nav-text">FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-生成-SLR-分析表"><span class="nav-number">3.</span> <span class="nav-text">9. 生成 SLR 分析表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ACTION-函数"><span class="nav-number">3.1.</span> <span class="nav-text">ACTION 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#GOTO-函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">GOTO 函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-进行语法分析"><span class="nav-number">4.</span> <span class="nav-text">10. 进行语法分析</span></a></li></ol></div>
             
 
           </div>

@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="编译原理,语法分析,Python," />
+  <meta name="keywords" content="编译原理,Python,语法分析," />
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
-<meta name="keywords" content="编译原理,语法分析,Python">
+<meta name="description" content="一、语法分析器做什么 语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。  二、自底向上的语法分析器的实现I.">
+<meta name="keywords" content="编译原理,Python,语法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SLR语法分析器 python实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/10/31/语法分析器  python/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
+<meta property="og:description" content="一、语法分析器做什么 语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。  二、自底向上的语法分析器的实现I.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-11-02T07:59:35.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLR语法分析器 python实现">
-<meta name="twitter:description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
+<meta name="twitter:description" content="一、语法分析器做什么 语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。  二、自底向上的语法分析器的实现I.">
 
 
 
@@ -435,128 +435,89 @@
       
 
       
-        <h2 id="一-语法分析器做什么"><a class="markdownIt-Anchor" href="#一-语法分析器做什么"></a> 一、语法分析器做什么</h2>
-<blockquote>
-<p>语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。<br>
-一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。</p>
+        <h2 id="一、语法分析器做什么"><a href="#一、语法分析器做什么" class="headerlink" title="一、语法分析器做什么"></a>一、语法分析器做什么</h2><blockquote>
+<p>语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。<br>一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。</p>
 </blockquote>
-<h2 id="二-自底向上的语法分析器的实现"><a class="markdownIt-Anchor" href="#二-自底向上的语法分析器的实现"></a> 二、自底向上的语法分析器的实现</h2>
-<h3 id="i-推导方式"><a class="markdownIt-Anchor" href="#i-推导方式"></a> I. 推导方式</h3>
-<p><strong>输入</strong>：文法 $  G=(V,T,P,S)  $ 的拓广文法 $ G’ $<br>
-<strong>输出</strong>： $  G’  $ 的 $ LR(0) $ 分析表。即 $ action $ 和 $ goto $ 表</p>
+<h2 id="二、自底向上的语法分析器的实现"><a href="#二、自底向上的语法分析器的实现" class="headerlink" title="二、自底向上的语法分析器的实现"></a>二、自底向上的语法分析器的实现</h2><h3 id="I-推导方式"><a href="#I-推导方式" class="headerlink" title="I. 推导方式"></a>I. 推导方式</h3><p><strong>输入</strong>：文法 $  G=(V,T,P,S)  $ 的拓广文法 $ G’ $<br><strong>输出</strong>： $  G’  $ 的 $ LR(0) $ 分析表。即 $ action $ 和 $ goto $ 表</p>
 <p>步骤：</p>
 <ul>
-<li>① 构造 $ I_0 $ 。 $ I_0 = CLOSURE( \lbrace S’ \rightarrow .S  \rbrace ) $</li>
-<li>② 通过 $ GO(I_i, X) $ 函数求出 $ LR(0) $ 的项目集规范族 $ C= \lbrace I_0,I_1,…,I_n  \rbrace  $</li>
-<li>③ 遍历项目及规范族 $ C $ ， $ I_0 $ 对应初始状态 $ 0 $， $ I_i $ 对应状态 $ i $
-<ul>
-<li>(1) 若项目 $ A→α·aβ $ 属于 $ I_k $ 且转换函数 $ GO(I_k,a)= I_j $ ，当 $ a $ 为终结符时，则置 $ ACTION[k,a] $ 为 $ S_j $ 。</li>
-<li>(2) 若项目 $ A→α· $  属于 $ I_k $ ，则对任何终结符 $ a $  和’#'置 $ ACTION[k,a] $ 和 $ ACTION $ [k,#]为 $ r_j $ ， $ j $ 为在文法 $ G′ $ 中某产生式 $ A→α $ 的序号。</li>
-<li>(3) 若 $ GO(I_k,A)＝I_j $ ，则置 $ GOTO[k,A] $ 为 $ G_j $ ，其中 $ A $ 为非终结符。</li>
+<li>① 构造 $ I_0 $ 。 $ I_0 = CLOSURE( \lbrace S’ \rightarrow .S  \rbrace ) $ </li>
+<li>② 通过 $ GO(I_i, X) $ 函数求出 $ LR(0) $ 的项目集规范族 $ C= \lbrace I_0,I_1,…,I_n  \rbrace  $ </li>
+<li>③ 遍历项目及规范族 $ C $ ， $ I_0 $ 对应初始状态 $ 0 $， $ I_i $ 对应状态 $ i $ <ul>
+<li>(1) 若项目 $ A→α·aβ $ 属于 $ I_k $ 且转换函数 $ GO(I_k,a)= I_j $ ，当 $ a $ 为终结符时，则置 $ ACTION[k,a] $ 为 $ S_j $ 。　</li>
+<li>(2) 若项目 $ A→α· $  属于 $ I_k $ ，则对任何终结符 $ a $  和’#’置 $ ACTION[k,a] $ 和 $ ACTION $ [k,#]为 $ r_j $ ， $ j $ 为在文法 $ G′ $ 中某产生式 $ A→α $ 的序号。</li>
+<li>(3) 若 $ GO(I_k,A)＝I_j $ ，则置 $ GOTO[k,A] $ 为 $ G_j $ ，其中 $ A $ 为非终结符。　</li>
 <li>(4) 若项目 $ S′→S· $ 属于 $ I_k $ ，则置 $ ACTION $ [k,#]为 $ acc $ ，表示接受。</li>
 </ul>
 </li>
 </ul>
-<h3 id="ii-关键函数"><a class="markdownIt-Anchor" href="#ii-关键函数"></a> II. 关键函数</h3>
-<h4 id="1-closurej-函数"><a class="markdownIt-Anchor" href="#1-closurej-函数"></a> 1. CLOSURE(J) 函数</h4>
-<ul>
+<h3 id="II-关键函数"><a href="#II-关键函数" class="headerlink" title="II. 关键函数"></a>II. 关键函数</h3><h4 id="1-CLOSURE-J-函数"><a href="#1-CLOSURE-J-函数" class="headerlink" title="1. CLOSURE(J) 函数"></a>1. CLOSURE(J) 函数</h4><ul>
 <li>即求J中每一项的闭包。</li>
-<li>也可以用递归。</li>
+<li>也可以用递归。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function CLOSURE(J):</span><br><span class="line">  I = J</span><br><span class="line">  重复执行：</span><br><span class="line">    for I 中每个项目，形如A-&gt;α.Bβ，执行：</span><br><span class="line">      for 增广文法中每一个以B开始的产生式，B-&gt;γ，执行：</span><br><span class="line">        if 以B开始的加点最左侧的产生式，B-&gt;.γ 不在 I 中，将其加入 I 中</span><br><span class="line">  直到 I 不再增大</span><br><span class="line">  返回 I</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function CLOSURE(J):</span><br><span class="line">  I = J</span><br><span class="line">  重复执行：</span><br><span class="line">    for I 中每个项目，形如A-&gt;α.Bβ，执行：</span><br><span class="line">      for 增广文法中每一个以B开始的产生式，B-&gt;γ，执行：</span><br><span class="line">        if 以B开始的加点最左侧的产生式，B-&gt;.γ 不在 I 中，将其加入 I 中</span><br><span class="line">  直到 I 不再增大</span><br><span class="line">  返回 I</span><br></pre></td></tr></table></figure>
-<h4 id="2-goix-函数"><a class="markdownIt-Anchor" href="#2-goix-函数"></a> 2. GO(I,X) 函数</h4>
-<ul>
-<li>参数：
-<ul>
+<h4 id="2-GO-I-X-函数"><a href="#2-GO-I-X-函数" class="headerlink" title="2. GO(I,X) 函数"></a>2. GO(I,X) 函数</h4><ul>
+<li>参数：<ul>
 <li>$ I $ 为项目集闭包。</li>
-<li>$ \lbrace X \rbrace $ 为 $ I $ 中点后字符的集合，因此 $ X $ 就是其中一项。<br>
-比如：$ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace  $ ，则 $ \lbrace X \rbrace  = \lbrace E, T, F, (, g \rbrace $，需要把 $ X $ 中每一项都传入 $ GO $ 函数进行计算。</li>
+<li>$ \lbrace X \rbrace $ 为 $ I $ 中点后字符的集合，因此 $ X $ 就是其中一项。<br>比如：$ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace  $ ，则 $ \lbrace X \rbrace  = \lbrace E, T, F, (, g \rbrace $，需要把 $ X $ 中每一项都传入 $ GO $ 函数进行计算。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function GO(I,X):</span><br><span class="line">  J = Φ</span><br><span class="line">  for I 中每一个项目，形如A-&gt;α.Xβ（点后面的字符为 X ），执行：</span><br><span class="line">    J = J ∪ &#123;A-&gt;αX.β&#125;，即将点右移一位。</span><br><span class="line">  返回 CLOSURE(J)，即返回 J 的闭包</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function GO(I,X):</span><br><span class="line">  J = Φ</span><br><span class="line">  for I 中每一个项目，形如A-&gt;α.Xβ（点后面的字符为 X ），执行：</span><br><span class="line">    J = J ∪ &#123;A-&gt;αX.β&#125;，即将点右移一位。</span><br><span class="line">  返回 CLOSURE(J)，即返回 J 的闭包</span><br></pre></td></tr></table></figure>
-<h4 id="3-如何使用-closurej-goix"><a class="markdownIt-Anchor" href="#3-如何使用-closurej-goix"></a> 3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</h4>
-<blockquote>
+<h4 id="3-★-如何使用-CLOSURE-J-GO-I-X"><a href="#3-★-如何使用-CLOSURE-J-GO-I-X" class="headerlink" title="3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $"></a>3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</h4><blockquote>
 <p><strong>以下，大写字母为非终结符，小写字母或符号为终结符</strong></p>
-</blockquote>
-<blockquote>
-<p>文法： $ G = \lbrace S\rightarrow E, E\rightarrow E+T, E\rightarrow T, T\rightarrow T*F, T\rightarrow F, F\rightarrow (E), F\rightarrow g \rbrace ​ $</p>
+<p>文法： $ G = \lbrace S\rightarrow E, E\rightarrow E+T, E\rightarrow T, T\rightarrow T*F, T\rightarrow F, F\rightarrow (E), F\rightarrow g \rbrace ​ $ </p>
 </blockquote>
 <ul>
-<li>① 构造  $ I_0 $ 。即求增广文法的第一个产生式的闭包  $ CLOSURE( \lbrace S \rightarrow .E \rbrace ) $ 。
-<ul>
+<li>① 构造  $ I_0 $ 。即求增广文法的第一个产生式的闭包  $ CLOSURE( \lbrace S \rightarrow .E \rbrace ) $ 。<ul>
 <li>即 $ CLOSURE(J), J = {S \rightarrow .E} $ E是非终结符，所以找以E为开始的点在产生式右部的开始的产生式。$ E \rightarrow .T % $ , $ T $ 仍为非终结符，所以再像 $ E $ 一样找 $ T $，把它们都加入 $ J $。</li>
 </ul>
 </li>
-<li>② 利用 $ GO(I_0, X) $ 构造 $ I_i $
-<ul>
-<li>第①步求出了<br>
-$ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace  $</li>
-<li>(1) 首先找出 $ I_0 $ 中所有点后的字符， $ \lbrace X \rbrace = \lbrace E,T,F,(,g \rbrace  $</li>
-<li>(2) 每一个 $ \lbrace X \rbrace $ 中的字符都会作为 $ GO(I_0,X)中的参数X $
-<ul>
-<li>a. 求 $ GO(I_0, E) $ ,得到 $ I_1 $<br>
-此时 $ X $ 为 $ E $ ， 即形如 $ A \rightarrow α.Xβ $ 的产生式为 $  \lbrace S\rightarrow .E,E\rightarrow .E+T \rbrace  $<br>
-因此  $ J = Φ ∪ \lbrace S\rightarrow E.,E\rightarrow E.+T \rbrace  $<br>
-然后求 $ CLOSURE(J) $ ,返回 $ I_1 $</li>
+<li>② 利用 $ GO(I_0, X) $ 构造 $ I_i $ <ul>
+<li>第①步求出了<br>  $ I_0= \lbrace S\rightarrow .E, E\rightarrow .E+T, E\rightarrow .T, T\rightarrow .T*F, T\rightarrow .F, F\rightarrow .(E), F\rightarrow.g \rbrace  $ </li>
+<li>(1) 首先找出 $ I_0 $ 中所有点后的字符， $ \lbrace X \rbrace = \lbrace E,T,F,(,g \rbrace  $ </li>
+<li>(2) 每一个 $ \lbrace X \rbrace $ 中的字符都会作为 $ GO(I_0,X)中的参数X $ <ul>
+<li>a. 求 $ GO(I_0, E) $ ,得到 $ I_1 $<br>   此时 $ X $ 为 $ E $ ， 即形如 $ A \rightarrow α.Xβ $ 的产生式为 $  \lbrace S\rightarrow .E,E\rightarrow .E+T \rbrace  $<br>   因此  $ J = Φ ∪ \lbrace S\rightarrow E.,E\rightarrow E.+T \rbrace  $<br>   然后求 $ CLOSURE(J) $ ,返回 $ I_1 $ </li>
 <li>b. 求 $ GO(I_0, T) $ ，得到 $ I_2 $ , 同上</li>
-<li>…</li>
+<li>……..</li>
 <li>e. 求 $ GO(I_0, g) $ ，得到 $ I_5 $ , 同上</li>
 </ul>
 </li>
-<li>(3) 再找出 $ I_1 $ 中所有点后的字符， $ \lbrace X \rbrace = \lbrace + \rbrace  $
-<ul>
-<li>f. 求 $ GO(I_1, +) $ ，得到 $ I_6 $ , 同上<br>
-…</li>
+<li>(3) 再找出 $ I_1 $ 中所有点后的字符， $ \lbrace X \rbrace = \lbrace + \rbrace  $ <ul>
+<li>f. 求 $ GO(I_1, +) $ ，得到 $ I_6 $ , 同上<br>……</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>③ 所有 $ I_x $ 的集合就是项目及规范族 $ C $ , $ C= \lbrace I_0, I_1, …, I_n \rbrace $</li>
 </ul>
-<h3 id="iii-实现"><a class="markdownIt-Anchor" href="#iii-实现"></a> III. 实现</h3>
-<h4 id="0-数据结构"><a class="markdownIt-Anchor" href="#0-数据结构"></a> 0. 数据结构</h4>
-<ul>
+<h3 id="III-实现"><a href="#III-实现" class="headerlink" title="III. 实现"></a>III. 实现</h3><h4 id="0-数据结构"><a href="#0-数据结构" class="headerlink" title="0. 数据结构"></a>0. 数据结构</h4><ul>
 <li>python 列表、集合等</li>
 </ul>
-<h4 id="1-项目生成"><a class="markdownIt-Anchor" href="#1-项目生成"></a> 1. 项目生成</h4>
-<p>步骤：</p>
+<h4 id="1-项目生成"><a href="#1-项目生成" class="headerlink" title="1. 项目生成"></a>1. 项目生成</h4><p>步骤：</p>
 <ul>
 <li>① 读取文法文件，存入列表</li>
-<li>② 遍历列表的所有元素，为其加点，从产生式的右边的第一个符号的左侧开始加点，点每次右移一位，直到移到最右侧，这些标有点的产生式就是文法的LR(0)项目，即<br>
-<code>产生式：S-&gt;AB; 项目：(1) S-&gt;.AB (2) S-&gt;A.B (3) S-&gt;AB.</code></li>
+<li>② 遍历列表的所有元素，为其加点，从产生式的右边的第一个符号的左侧开始加点，点每次右移一位，直到移到最右侧，这些标有点的产生式就是文法的LR(0)项目，即<br>  <code>产生式：S-&gt;AB; 项目：(1) S-&gt;.AB (2) S-&gt;A.B (3) S-&gt;AB.</code></li>
 </ul>
 <p>读取文法后，将终结符、非终结符分别存入终结符列表、非终结符列表，便于之后的判断。</p>
-<h4 id="2-读取规范句型"><a class="markdownIt-Anchor" href="#2-读取规范句型"></a> 2. 读取规范句型</h4>
-<p>将标识符、符号、关键字等读出，转换为文法可以识别的终结符与非终结符组成的串，等待识别。</p>
-<h4 id="3-closure-go-函数生成"><a class="markdownIt-Anchor" href="#3-closure-go-函数生成"></a> 3. $ CLOSURE $, $ GO $函数生成</h4>
-<h5 id="closurej"><a class="markdownIt-Anchor" href="#closurej"></a> $ CLOSURE(J) $</h5>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 为了与列表CLOSURE区分，我使用了CLOSURE FUNCTION 的简写 CLOSUREF</span><br><span class="line">def CLOSUREF(J): </span><br><span class="line">    tempClosure = []</span><br><span class="line">    for i in J:</span><br><span class="line">        nodePosition = i.index(&apos;@&apos;)</span><br><span class="line">        if (nodePosition == (len(i) - 1)) or ((i[nodePosition + 1]) in TERMINATOR): # 点在最后一位 或 点后是终结符</span><br><span class="line">            tempClosure.append(i)</span><br><span class="line">        elif((i[nodePosition + 1]) in NONTERMINATOR): # 点后为非终结符</span><br><span class="line">            tempClosure.append(i)</span><br><span class="line">            searchClosure(i[nodePosition+1], tempClosure) # 传入S-&gt;@B 中的 B，即找以 B 为开始的产生式</span><br><span class="line">    </span><br><span class="line">    if tempClosure in CLOSURE:  # 如果当前生成的CLOSURE已经生成过了，则直接返回之前生成的相同的CLOSURE</span><br><span class="line">        return CLOSURE[CLOSURE.index(tempClosure)]</span><br><span class="line">    CLOSURE.append(tempClosure)  </span><br><span class="line">    return tempClosure</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def searchClosure(c, tempClosure): </span><br><span class="line">    for i in grammarWithNode: # 遍历所有项目</span><br><span class="line">        if i[0] != c:</span><br><span class="line">            continue</span><br><span class="line">        if i[1] == &apos;@&apos;: # 点在产生式右部的开始</span><br><span class="line">            tempClosure.append(i)</span><br><span class="line">            if c != i[2] and i[2] in NONTERMINATOR : # 点后的仍然是非终结符，如 E </span><br><span class="line">                searchClosure(i[2], tempClosure) # 递归找以 E 为产生式开始的，且点在产生式右部的开始</span><br></pre></td></tr></table></figure>
-<h5 id="goix"><a class="markdownIt-Anchor" href="#goix"></a> $ GO(I,X) $</h5>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def GO(I,X):</span><br><span class="line">    J = []</span><br><span class="line">    for i in I:</span><br><span class="line">        nodeIndex = i.index(&apos;@&apos;)</span><br><span class="line">        if nodeIndex == len(i) - 1:</span><br><span class="line">            continue</span><br><span class="line">        if i[nodeIndex + 1] != X:</span><br><span class="line">            continue</span><br><span class="line">        </span><br><span class="line">        moveRightStr = nodeRightMove(i) # 将点右移一位</span><br><span class="line">        J.append(moveRightStr)</span><br><span class="line"></span><br><span class="line">    return CLOSUREF(J)</span><br></pre></td></tr></table></figure>
-<h4 id="4-求first-follow集"><a class="markdownIt-Anchor" href="#4-求first-follow集"></a> 4. 求FIRST、FOLLOW集</h4>
-<h5 id="first"><a class="markdownIt-Anchor" href="#first"></a> FIRST:</h5>
-<ul>
+<h4 id="2-读取规范句型"><a href="#2-读取规范句型" class="headerlink" title="2. 读取规范句型"></a>2. 读取规范句型</h4><p>将标识符、符号、关键字等读出，转换为文法可以识别的终结符与非终结符组成的串，等待识别。</p>
+<h4 id="3-CLOSURE-GO-函数生成"><a href="#3-CLOSURE-GO-函数生成" class="headerlink" title="3. $ CLOSURE $, $ GO $函数生成"></a>3. $ CLOSURE $, $ GO $函数生成</h4><h5 id="CLOSURE-J"><a href="#CLOSURE-J" class="headerlink" title="$ CLOSURE(J) $"></a>$ CLOSURE(J) $</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 为了与列表CLOSURE区分，我使用了CLOSURE FUNCTION 的简写 CLOSUREF</span><br><span class="line">def CLOSUREF(J): </span><br><span class="line">    tempClosure = []</span><br><span class="line">    for i in J:</span><br><span class="line">        nodePosition = i.index(&apos;@&apos;)</span><br><span class="line">        if (nodePosition == (len(i) - 1)) or ((i[nodePosition + 1]) in TERMINATOR): # 点在最后一位 或 点后是终结符</span><br><span class="line">            tempClosure.append(i)</span><br><span class="line">        elif((i[nodePosition + 1]) in NONTERMINATOR): # 点后为非终结符</span><br><span class="line">            tempClosure.append(i)</span><br><span class="line">            searchClosure(i[nodePosition+1], tempClosure) # 传入S-&gt;@B 中的 B，即找以 B 为开始的产生式</span><br><span class="line">    </span><br><span class="line">    if tempClosure in CLOSURE:  # 如果当前生成的CLOSURE已经生成过了，则直接返回之前生成的相同的CLOSURE</span><br><span class="line">        return CLOSURE[CLOSURE.index(tempClosure)]</span><br><span class="line">    CLOSURE.append(tempClosure)  </span><br><span class="line">    return tempClosure</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def searchClosure(c, tempClosure): </span><br><span class="line">    for i in grammarWithNode: # 遍历所有项目</span><br><span class="line">        if i[0] != c:</span><br><span class="line">            continue</span><br><span class="line">        if i[1] == &apos;@&apos;: # 点在产生式右部的开始</span><br><span class="line">            tempClosure.append(i)</span><br><span class="line">            if c != i[2] and i[2] in NONTERMINATOR : # 点后的仍然是非终结符，如 E </span><br><span class="line">                searchClosure(i[2], tempClosure) # 递归找以 E 为产生式开始的，且点在产生式右部的开始</span><br></pre></td></tr></table></figure>
+<h5 id="GO-I-X"><a href="#GO-I-X" class="headerlink" title="$ GO(I,X) $"></a>$ GO(I,X) $</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def GO(I,X):</span><br><span class="line">    J = []</span><br><span class="line">    for i in I:</span><br><span class="line">        nodeIndex = i.index(&apos;@&apos;)</span><br><span class="line">        if nodeIndex == len(i) - 1:</span><br><span class="line">            continue</span><br><span class="line">        if i[nodeIndex + 1] != X:</span><br><span class="line">            continue</span><br><span class="line">        </span><br><span class="line">        moveRightStr = nodeRightMove(i) # 将点右移一位</span><br><span class="line">        J.append(moveRightStr)</span><br><span class="line"></span><br><span class="line">    return CLOSUREF(J)</span><br></pre></td></tr></table></figure>
+<h4 id="4-求FIRST、FOLLOW集"><a href="#4-求FIRST、FOLLOW集" class="headerlink" title="4. 求FIRST、FOLLOW集"></a>4. 求FIRST、FOLLOW集</h4><h5 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST:"></a>FIRST:</h5><ul>
 <li>寻找最左终结符</li>
-<li>递归<br>
-如：求  $  S \rightarrow Eb  $  求S的FIRST集，E为终结符。 $  S \rightarrow E, E \rightarrow a  $  相当于 $  S \rightarrow a  $ , 因此E的最左终结符一定是S的<br>
-$  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 $ E $的子集，依次向下递归即可。</li>
+<li>递归<br>如：求  $  S \rightarrow Eb  $  求S的FIRST集，E为终结符。 $  S \rightarrow E, E \rightarrow a  $  相当于 $  S \rightarrow a  $ , 因此E的最左终结符一定是S的<pre><code>$  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 $ E $的子集，依次向下递归即可。
+</code></pre></li>
 </ul>
-<h5 id="follow"><a class="markdownIt-Anchor" href="#follow"></a> FOLLOW:</h5>
-<ul>
-<li>寻找每个非终结符右侧的终结符，（不考虑空串的情况时）<br>
-有三种情况:</li>
-<li>①  $  A \rightarrow aBb  $ ,  $ B $ 为非终结符， $ b $ 为终结符， $  FOLLOW(B) = FOLLOW(B) ∪ \lbrace b \rbrace  $</li>
-<li>②  $  A \rightarrow aB  $ ,  $ B $ 为非终结符， $  E \rightarrow Af  $  即  $  E \rightarrow aBf  $ ， 因此 $ A $ 的 $ FOLLOW $ 集就是B的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FOLLOW(A)  $</li>
-<li>③  $  A \rightarrow aBE  $ ,  $ B $ 为非终结符， $ E $ 为非终结符， $  E \rightarrow a  $  即  $  A \rightarrow aBa  $ ，因此 $ E $ 的 $ FIRST $ 集就是 $ B $ 的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FIRST(E)  $<br>
-重复这个操作，直到所有 $ FOLLOW $ 集不再增大为止</li>
+<h5 id="FOLLOW"><a href="#FOLLOW" class="headerlink" title="FOLLOW:"></a>FOLLOW:</h5><ul>
+<li>寻找每个非终结符右侧的终结符，（不考虑空串的情况时）<br>有三种情况:</li>
+<li>①  $  A \rightarrow aBb  $ ,  $ B $ 为非终结符， $ b $ 为终结符， $  FOLLOW(B) = FOLLOW(B) ∪ \lbrace b \rbrace  $ </li>
+<li>②  $  A \rightarrow aB  $ ,  $ B $ 为非终结符， $  E \rightarrow Af  $  即  $  E \rightarrow aBf  $ ， 因此 $ A $ 的 $ FOLLOW $ 集就是B的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FOLLOW(A)  $ </li>
+<li>③  $  A \rightarrow aBE  $ ,  $ B $ 为非终结符， $ E $ 为非终结符， $  E \rightarrow a  $  即  $  A \rightarrow aBa  $ ，因此 $ E $ 的 $ FIRST $ 集就是 $ B $ 的 $ FOLLOW $ 集的一个子集，因此  $  FOLLOW(B) = FOLLOW(B) ∪ FIRST(E)  $<br>重复这个操作，直到所有 $ FOLLOW $ 集不再增大为止</li>
 </ul>
-<h4 id="5-生成slr分析表"><a class="markdownIt-Anchor" href="#5-生成slr分析表"></a> 5. 生成SLR分析表</h4>
-<ul>
-<li>① 首先构造 $ I_0 $ , $ I_0 = CLOSURE( \lbrace S \rightarrow E \rbrace ) $，然后根据 &quot;3.&quot;的描述，求出 $ C = \lbrace I_0, I_1, …, I_n \rbrace $</li>
-<li>② $ I_0 $ 为初始状态。构造 $ action $ 表与 $ goto $ 表，$ action $ 表<strong>列标</strong>所有终结符和’#’, $ goto $表<strong>列标</strong>为所有终结符，<strong>行标</strong>均为所有项目及规范族的下标。</li>
-<li>③ 令初始状态 $ k = 0 $, k递增进行如下循环：
-<ul>
+<h4 id="5-生成SLR分析表"><a href="#5-生成SLR分析表" class="headerlink" title="5. 生成SLR分析表"></a>5. 生成SLR分析表</h4><ul>
+<li>① 首先构造 $ I_0 $ , $ I_0 = CLOSURE( \lbrace S \rightarrow E \rbrace ) $，然后根据 “3.”的描述，求出 $ C = \lbrace I_0, I_1, …, I_n \rbrace $</li>
+<li>② $ I_0 $ 为初始状态。构造 $ action $ 表与 $ goto $ 表，$ action $ 表<strong>列标</strong>所有终结符和’#’, $ goto $表<strong>列标</strong>为所有终结符，<strong>行标</strong>均为所有项目及规范族的下标。 </li>
+<li>③ 令初始状态 $ k = 0 $, k递增进行如下循环：<ul>
 <li>(1) 如果 $ A \rightarrow α.aβ $ 在 $ I_k $ 中，并且 $ a $为<strong>终结符</strong>，那么求一下 $ GO(I_k, a) $ 的值是 $ C $中的哪一项，如果求出是 $ I_k $ ， 则 $ action[k,a] = Sj $ ，即在行标为 $ k $, 列标为 $ a $ 的位置上写入 $ Sj $。</li>
 <li>(2) 如果 $ A \rightarrow α.Bβ $ 在 $ I_k $ 中，并且 $ B $为<strong>非终结符</strong>，那么那么求一下 $ GO(I_k, B) $ 的值是 $ C $中的哪一项，如果求出是 $ I_k $ , 则 $ goto[k,B] = Sj $，即在行标为 $ k $, 列标为 $ B $ 的位置上写入 $ j $。</li>
 <li>(3) 如果 $ A \rightarrow α. $ , 并且 $ A \rightarrow α $ 在（<strong>不加点</strong>）文法 $ G $ 中是第 $ j $ 个产生式，那么对于每个终结符（包括#）$ t $ ，如果 $ t ∈ FOLLOW(A) $ ，（A为产生式左部）， 则 $ action[k,t] = rj $ ，即在行标为 $ k $ , 列标为满足要求的 $ t $ 的位置上写入 $ rj $ 。</li>
@@ -566,8 +527,7 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
 <li>遍历完 $ C $ 中所有 $ I $ 以及 $ I $ 中所有项目后，$ SLR $ 分析表就生成了。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def generateSLR():</span><br><span class="line">    global action, goto</span><br><span class="line">    action = [[&apos; &apos; for col in range(len(TERMINATOR))] for row in range(len(CLOSURE))]</span><br><span class="line">    goto = [[&apos; &apos; for col in range(len(NONTERMINATOR))] for row in range(len(CLOSURE))]</span><br><span class="line">    for k in range(0, len(CLOSURE)):</span><br><span class="line">        for a in CLOSURE[k]: # Closure内各表达式</span><br><span class="line">            nodeIndex = a.index(&apos;@&apos;)</span><br><span class="line">            if nodeIndex == len(a) - 1:</span><br><span class="line">                grammarIndex = grammarOriginalLists.index(a[0:len(a)-1])</span><br><span class="line">                for ter in TERMINATOR:</span><br><span class="line">                    if a[0] == grammarOriginalLists[0][0]:</span><br><span class="line">                        action[k][TERMINATOR.index(&apos;#&apos;)] = &quot;a0&quot;</span><br><span class="line">                    elif ter in FOLLOW[NONTERMINATOR.index(a[0])]:</span><br><span class="line">                        action[k][TERMINATOR.index(ter)] = &quot;r&quot; + str(grammarIndex)</span><br><span class="line">            elif a[nodeIndex+1] in TERMINATOR:</span><br><span class="line">                resultClosure = GO(CLOSURE[k], a[nodeIndex+1])</span><br><span class="line">                aIndex = CLOSURE.index(resultClosure)</span><br><span class="line">                action[k][TERMINATOR.index(a[nodeIndex+1])] = &quot;S&quot; + str(aIndex)</span><br><span class="line">            elif a[nodeIndex+1] in NONTERMINATOR:</span><br><span class="line">                resultClosure = GO(CLOSURE[k], a[nodeIndex+1])</span><br><span class="line">                aIndex = CLOSURE.index(resultClosure)</span><br><span class="line">                goto[k][NONTERMINATOR.index(a[nodeIndex+1])] = &quot;G&quot; + str(aIndex)</span><br></pre></td></tr></table></figure>
-<h4 id="6-进行语法分析"><a class="markdownIt-Anchor" href="#6-进行语法分析"></a> 6. 进行语法分析</h4>
-<p>利用Python的数据结构列表模拟栈的操作，状态栈、符号栈分别存放当前状态、当前的符号，输入流不断进行输入，状态与当前输入利用SLR表进行转换，得到新的状态与符号。</p>
+<h4 id="6-进行语法分析"><a href="#6-进行语法分析" class="headerlink" title="6. 进行语法分析"></a>6. 进行语法分析</h4><p>利用Python的数据结构列表模拟栈的操作，状态栈、符号栈分别存放当前状态、当前的符号，输入流不断进行输入，状态与当前输入利用SLR表进行转换，得到新的状态与符号。</p>
 
       
     </div>
@@ -597,9 +557,9 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
           
             <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
           
-            <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
-          
             <a href="/liysuzy/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
           
         </div>
       
@@ -808,7 +768,7 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text"> 一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text"> 二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-推导方式"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-关键函数"><span class="nav-number">2.2.</span> <span class="nav-text"> II. 关键函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-closurej-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 1. CLOSURE(J) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-goix-函数"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 2. GO(I,X) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-如何使用-closurej-goix"><span class="nav-number">2.2.3.</span> <span class="nav-text"> 3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-实现"><span class="nav-number">2.3.</span> <span class="nav-text"> III. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.3.1.</span> <span class="nav-text"> 0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.3.2.</span> <span class="nav-text"> 1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.3.3.</span> <span class="nav-text"> 2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-closure-go-函数生成"><span class="nav-number">2.3.4.</span> <span class="nav-text"> 3. $ CLOSURE $, $ GO $函数生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#closurej"><span class="nav-number">2.3.4.1.</span> <span class="nav-text"> $ CLOSURE(J) $</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#goix"><span class="nav-number">2.3.4.2.</span> <span class="nav-text"> $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-求first-follow集"><span class="nav-number">2.3.5.</span> <span class="nav-text"> 4. 求FIRST、FOLLOW集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#first"><span class="nav-number">2.3.5.1.</span> <span class="nav-text"> FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#follow"><span class="nav-number">2.3.5.2.</span> <span class="nav-text"> FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-生成slr分析表"><span class="nav-number">2.3.6.</span> <span class="nav-text"> 5. 生成SLR分析表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-进行语法分析"><span class="nav-number">2.3.7.</span> <span class="nav-text"> 6. 进行语法分析</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text">一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text">二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-推导方式"><span class="nav-number">2.1.</span> <span class="nav-text">I. 推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-关键函数"><span class="nav-number">2.2.</span> <span class="nav-text">II. 关键函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CLOSURE-J-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. CLOSURE(J) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GO-I-X-函数"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. GO(I,X) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-★-如何使用-CLOSURE-J-GO-I-X"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-实现"><span class="nav-number">2.3.</span> <span class="nav-text">III. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.3.1.</span> <span class="nav-text">0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.3.2.</span> <span class="nav-text">1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.3.3.</span> <span class="nav-text">2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CLOSURE-GO-函数生成"><span class="nav-number">2.3.4.</span> <span class="nav-text">3. $ CLOSURE $, $ GO $函数生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CLOSURE-J"><span class="nav-number">2.3.4.1.</span> <span class="nav-text">$ CLOSURE(J) $</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GO-I-X"><span class="nav-number">2.3.4.2.</span> <span class="nav-text">$ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-求FIRST、FOLLOW集"><span class="nav-number">2.3.5.</span> <span class="nav-text">4. 求FIRST、FOLLOW集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#FIRST"><span class="nav-number">2.3.5.1.</span> <span class="nav-text">FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FOLLOW"><span class="nav-number">2.3.5.2.</span> <span class="nav-text">FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-生成SLR分析表"><span class="nav-number">2.3.6.</span> <span class="nav-text">5. 生成SLR分析表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-进行语法分析"><span class="nav-number">2.3.7.</span> <span class="nav-text">6. 进行语法分析</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
