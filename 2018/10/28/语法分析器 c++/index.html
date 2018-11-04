@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="C++,C,编译原理,语法分析," />
+  <meta name="keywords" content="编译原理,语法分析,C++,C," />
 
 
 
@@ -98,7 +98,7 @@
 
 
 <meta name="description" content="在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立）。   一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分">
-<meta name="keywords" content="C++,C,编译原理,语法分析">
+<meta name="keywords" content="编译原理,语法分析,C++,C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SLR语法分析器 C++实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/10/28/语法分析器 c++/index.html">
@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102170249.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102171057.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181102171702.png">
-<meta property="og:updated_time" content="2018-11-02T09:29:09.421Z">
+<meta property="og:updated_time" content="2018-11-04T07:45:37.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLR语法分析器 C++实现">
 <meta name="twitter:description" content="在文章语法分析器python实现中描述了课本上的算法（利用CLOSURE、GO函数进行SLR分析表的建立）。   一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分">
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,641 字
+                  2,664 字
                 </span>
               
 
@@ -651,6 +651,11 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
 <p><strong>通过这两个函数，SLR分析表就可以生成了。</strong></p>
 <h4 id="10-进行语法分析"><a class="markdownIt-Anchor" href="#10-进行语法分析"></a> 10. 进行语法分析</h4>
 <p>利用C++栈模拟栈的操作，状态栈、符号栈分别存放当前状态、当前的符号，输入流不断进行输入，状态与当前输入利用SLR表进行转换，得到新的状态与符号。</p>
+<h2 id="三-源码"><a class="markdownIt-Anchor" href="#三-源码"></a> 三、 源码</h2>
+<blockquote>
+<p><a href="https://git.dev.tencent.com/liysuzy/Compilers.git" target="_blank" rel="noopener">https://git.dev.tencent.com/liysuzy/Compilers.git</a><br>
+如有问题请与我联系，1121899707@msn.cn</p>
+</blockquote>
 
       
     </div>
@@ -678,13 +683,13 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
       
         <div class="post-tags">
           
-            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
-          
-            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
-          
             <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
           
             <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
+          
+            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/liysuzy/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
           
         </div>
       
@@ -897,7 +902,7 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text"> 一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text"> 二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-我的推导方式"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 我的推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-实现"><span class="nav-number">2.2.</span> <span class="nav-text"> II. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.2.3.</span> <span class="nav-text"> 2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-nfa-生成"><span class="nav-number">2.2.4.</span> <span class="nav-text"> 3. NFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-c-生成"><span class="nav-number">2.2.5.</span> <span class="nav-text"> 4. $ C $ 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-dfa-生成"><span class="nav-number">2.2.6.</span> <span class="nav-text"> 5. DFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-dfa-图的合并及真正的项目及规范族-c-生成"><span class="nav-number">2.2.7.</span> <span class="nav-text"> 6. DFA 图的合并及真正的项目及规范族 $ C $ 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-新的-dfa-生成"><span class="nav-number">2.2.8.</span> <span class="nav-text"> 7. 新的 DFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-求-first-follow-集"><span class="nav-number">2.2.9.</span> <span class="nav-text"> 8. 求 FIRST、FOLLOW 集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#first"><span class="nav-number">2.2.9.1.</span> <span class="nav-text"> FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#follow"><span class="nav-number">2.2.9.2.</span> <span class="nav-text"> FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-生成-slr-分析表"><span class="nav-number">2.2.10.</span> <span class="nav-text"> 9. 生成 SLR 分析表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#action-函数"><span class="nav-number">2.2.10.1.</span> <span class="nav-text"> ACTION 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#goto-函数"><span class="nav-number">2.2.10.1.1.</span> <span class="nav-text"> GOTO 函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-进行语法分析"><span class="nav-number">2.2.11.</span> <span class="nav-text"> 10. 进行语法分析</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text"> 一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text"> 二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-我的推导方式"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 我的推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-实现"><span class="nav-number">2.2.</span> <span class="nav-text"> II. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.2.3.</span> <span class="nav-text"> 2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-nfa-生成"><span class="nav-number">2.2.4.</span> <span class="nav-text"> 3. NFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-c-生成"><span class="nav-number">2.2.5.</span> <span class="nav-text"> 4. $ C $ 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-dfa-生成"><span class="nav-number">2.2.6.</span> <span class="nav-text"> 5. DFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-dfa-图的合并及真正的项目及规范族-c-生成"><span class="nav-number">2.2.7.</span> <span class="nav-text"> 6. DFA 图的合并及真正的项目及规范族 $ C $ 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-新的-dfa-生成"><span class="nav-number">2.2.8.</span> <span class="nav-text"> 7. 新的 DFA 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-求-first-follow-集"><span class="nav-number">2.2.9.</span> <span class="nav-text"> 8. 求 FIRST、FOLLOW 集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#first"><span class="nav-number">2.2.9.1.</span> <span class="nav-text"> FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#follow"><span class="nav-number">2.2.9.2.</span> <span class="nav-text"> FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-生成-slr-分析表"><span class="nav-number">2.2.10.</span> <span class="nav-text"> 9. 生成 SLR 分析表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#action-函数"><span class="nav-number">2.2.10.1.</span> <span class="nav-text"> ACTION 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#goto-函数"><span class="nav-number">2.2.10.1.1.</span> <span class="nav-text"> GOTO 函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-进行语法分析"><span class="nav-number">2.2.11.</span> <span class="nav-text"> 10. 进行语法分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-源码"><span class="nav-number">3.</span> <span class="nav-text"> 三、 源码</span></a></li></ol></div>
             
 
           </div>

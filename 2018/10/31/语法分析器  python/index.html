@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="编译原理,Python,语法分析," />
+  <meta name="keywords" content="Python,编译原理,语法分析," />
 
 
 
@@ -98,14 +98,14 @@
 
 
 <meta name="description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
-<meta name="keywords" content="编译原理,Python,语法分析">
+<meta name="keywords" content="Python,编译原理,语法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SLR语法分析器 python实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/10/31/语法分析器  python/index.html">
 <meta property="og:site_name" content="LiySuzy">
 <meta property="og:description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-02T07:59:35.569Z">
+<meta property="og:updated_time" content="2018-11-04T07:45:22.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLR语法分析器 python实现">
 <meta name="twitter:description" content="一、语法分析器做什么  语法分析是根据某种给定的形式文法对由单词序列（如英语单词序列）构成的输入文本进行分析并确定其语法结构的一种过程。 一个语法分析器从词法分析器获得一个词素序列，并验证这个序列是否可以由源语言的文法生成。语法分析器会构造一棵语法分析树，并把它传递给编译器的其他部分进一步处理，在构建语法分析树的过程中，就验证了这个词素序列是否符合源语言的文法。   二、自底向上的语法分析器的实">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,360 字
+                  2,383 字
                 </span>
               
 
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">阅读时长 </span>
                 
                 <span title="阅读时长">
-                  10 分钟
+                  11 分钟
                 </span>
               
             </div>
@@ -568,6 +568,11 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def generateSLR():</span><br><span class="line">    global action, goto</span><br><span class="line">    action = [[&apos; &apos; for col in range(len(TERMINATOR))] for row in range(len(CLOSURE))]</span><br><span class="line">    goto = [[&apos; &apos; for col in range(len(NONTERMINATOR))] for row in range(len(CLOSURE))]</span><br><span class="line">    for k in range(0, len(CLOSURE)):</span><br><span class="line">        for a in CLOSURE[k]: # Closure内各表达式</span><br><span class="line">            nodeIndex = a.index(&apos;@&apos;)</span><br><span class="line">            if nodeIndex == len(a) - 1:</span><br><span class="line">                grammarIndex = grammarOriginalLists.index(a[0:len(a)-1])</span><br><span class="line">                for ter in TERMINATOR:</span><br><span class="line">                    if a[0] == grammarOriginalLists[0][0]:</span><br><span class="line">                        action[k][TERMINATOR.index(&apos;#&apos;)] = &quot;a0&quot;</span><br><span class="line">                    elif ter in FOLLOW[NONTERMINATOR.index(a[0])]:</span><br><span class="line">                        action[k][TERMINATOR.index(ter)] = &quot;r&quot; + str(grammarIndex)</span><br><span class="line">            elif a[nodeIndex+1] in TERMINATOR:</span><br><span class="line">                resultClosure = GO(CLOSURE[k], a[nodeIndex+1])</span><br><span class="line">                aIndex = CLOSURE.index(resultClosure)</span><br><span class="line">                action[k][TERMINATOR.index(a[nodeIndex+1])] = &quot;S&quot; + str(aIndex)</span><br><span class="line">            elif a[nodeIndex+1] in NONTERMINATOR:</span><br><span class="line">                resultClosure = GO(CLOSURE[k], a[nodeIndex+1])</span><br><span class="line">                aIndex = CLOSURE.index(resultClosure)</span><br><span class="line">                goto[k][NONTERMINATOR.index(a[nodeIndex+1])] = &quot;G&quot; + str(aIndex)</span><br></pre></td></tr></table></figure>
 <h4 id="6-进行语法分析"><a class="markdownIt-Anchor" href="#6-进行语法分析"></a> 6. 进行语法分析</h4>
 <p>利用Python的数据结构列表模拟栈的操作，状态栈、符号栈分别存放当前状态、当前的符号，输入流不断进行输入，状态与当前输入利用SLR表进行转换，得到新的状态与符号。</p>
+<h2 id="三-源码"><a class="markdownIt-Anchor" href="#三-源码"></a> 三、 源码</h2>
+<blockquote>
+<p><a href="https://git.dev.tencent.com/liysuzy/Compilers.git" target="_blank" rel="noopener">https://git.dev.tencent.com/liysuzy/Compilers.git</a><br>
+如有问题请与我联系，1121899707@msn.cn</p>
+</blockquote>
 
       
     </div>
@@ -595,9 +600,9 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
       
         <div class="post-tags">
           
-            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
-          
             <a href="/liysuzy/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
           
             <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
           
@@ -808,7 +813,7 @@ $  E \rightarrow a , E \rightarrow T  $  同理，$ T $的终结符集一定是 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text"> 一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text"> 二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-推导方式"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-关键函数"><span class="nav-number">2.2.</span> <span class="nav-text"> II. 关键函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-closurej-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 1. CLOSURE(J) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-goix-函数"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 2. GO(I,X) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-如何使用-closurej-goix"><span class="nav-number">2.2.3.</span> <span class="nav-text"> 3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-实现"><span class="nav-number">2.3.</span> <span class="nav-text"> III. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.3.1.</span> <span class="nav-text"> 0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.3.2.</span> <span class="nav-text"> 1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.3.3.</span> <span class="nav-text"> 2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-closure-go-函数生成"><span class="nav-number">2.3.4.</span> <span class="nav-text"> 3. $ CLOSURE $, $ GO $函数生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#closurej"><span class="nav-number">2.3.4.1.</span> <span class="nav-text"> $ CLOSURE(J) $</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#goix"><span class="nav-number">2.3.4.2.</span> <span class="nav-text"> $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-求first-follow集"><span class="nav-number">2.3.5.</span> <span class="nav-text"> 4. 求FIRST、FOLLOW集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#first"><span class="nav-number">2.3.5.1.</span> <span class="nav-text"> FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#follow"><span class="nav-number">2.3.5.2.</span> <span class="nav-text"> FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-生成slr分析表"><span class="nav-number">2.3.6.</span> <span class="nav-text"> 5. 生成SLR分析表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-进行语法分析"><span class="nav-number">2.3.7.</span> <span class="nav-text"> 6. 进行语法分析</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-语法分析器做什么"><span class="nav-number">1.</span> <span class="nav-text"> 一、语法分析器做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-自底向上的语法分析器的实现"><span class="nav-number">2.</span> <span class="nav-text"> 二、自底向上的语法分析器的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-推导方式"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 推导方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-关键函数"><span class="nav-number">2.2.</span> <span class="nav-text"> II. 关键函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-closurej-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 1. CLOSURE(J) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-goix-函数"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 2. GO(I,X) 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-如何使用-closurej-goix"><span class="nav-number">2.2.3.</span> <span class="nav-text"> 3. ★ 如何使用 $ CLOSURE(J) $  $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-实现"><span class="nav-number">2.3.</span> <span class="nav-text"> III. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-数据结构"><span class="nav-number">2.3.1.</span> <span class="nav-text"> 0. 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目生成"><span class="nav-number">2.3.2.</span> <span class="nav-text"> 1. 项目生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取规范句型"><span class="nav-number">2.3.3.</span> <span class="nav-text"> 2. 读取规范句型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-closure-go-函数生成"><span class="nav-number">2.3.4.</span> <span class="nav-text"> 3. $ CLOSURE $, $ GO $函数生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#closurej"><span class="nav-number">2.3.4.1.</span> <span class="nav-text"> $ CLOSURE(J) $</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#goix"><span class="nav-number">2.3.4.2.</span> <span class="nav-text"> $ GO(I,X) $</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-求first-follow集"><span class="nav-number">2.3.5.</span> <span class="nav-text"> 4. 求FIRST、FOLLOW集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#first"><span class="nav-number">2.3.5.1.</span> <span class="nav-text"> FIRST:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#follow"><span class="nav-number">2.3.5.2.</span> <span class="nav-text"> FOLLOW:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-生成slr分析表"><span class="nav-number">2.3.6.</span> <span class="nav-text"> 5. 生成SLR分析表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-进行语法分析"><span class="nav-number">2.3.7.</span> <span class="nav-text"> 6. 进行语法分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-源码"><span class="nav-number">3.</span> <span class="nav-text"> 三、 源码</span></a></li></ol></div>
             
 
           </div>
