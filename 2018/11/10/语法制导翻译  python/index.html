@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="编译原理,Python,语法分析,语义分析," />
+  <meta name="keywords" content="Python,编译原理,语法分析,语义分析," />
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="一、什么是语法制导翻译  为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。 前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。 后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。 语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正">
-<meta name="keywords" content="编译原理,Python,语法分析,语义分析">
+<meta name="description" content="一、什么是语法制导翻译 为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正有意义，也">
+<meta name="keywords" content="Python,编译原理,语法分析,语义分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="语法制导翻译——S-属性定义的自底向上计算 Python实现">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/11/10/语法制导翻译  python/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="一、什么是语法制导翻译  为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。 前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。 后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。 语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正">
+<meta property="og:description" content="一、什么是语法制导翻译 为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正有意义，也">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-10T08:27:23.639Z">
+<meta property="og:updated_time" content="2018-11-10T08:29:34.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语法制导翻译——S-属性定义的自底向上计算 Python实现">
-<meta name="twitter:description" content="一、什么是语法制导翻译  为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。 前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。 后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。 语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正">
+<meta name="twitter:description" content="一、什么是语法制导翻译 为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正有意义，也">
 
 
 
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,748 字
+                  1,750 字
                 </span>
               
 
@@ -435,83 +435,58 @@
       
 
       
-        <h2 id="一-什么是语法制导翻译"><a class="markdownIt-Anchor" href="#一-什么是语法制导翻译"></a> 一、什么是语法制导翻译</h2>
-<blockquote>
-<p>为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。<br>
-前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。<br>
-后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。<br>
-语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正有意义，也称为静态语义分析或静态检查<br>
-静态检查比较简单，可以和其他工作结合。<br>
-<strong>将静态检查和中间代码生成结合到语法分析中进行的技术称为语法制导翻译 (syntax-directed translation)。</strong></p>
+        <h2 id="一、什么是语法制导翻译"><a href="#一、什么是语法制导翻译" class="headerlink" title="一、什么是语法制导翻译"></a>一、什么是语法制导翻译</h2><blockquote>
+<p>为了提高编译程序的可移植性，一般将编译程序划分为前端和后端。<br>前端通常包括词法分析、语法分析、语义分析、中间代码生成、符号表的建立，以及与机器无关的中间代码优化等，它们的实现一般不依赖于具体的目标机器。<br>后端通常包括与机器有关的代码优化、目标代码的生成、相关的错误处理以及符号表的访问等。<br>语义分析器的主要任务是检查各个语法结构的静态语义，即验证语法正确的程序结构是否真正有意义，也称为静态语义分析或静态检查<br>静态检查比较简单，可以和其他工作结合。<br><strong>将静态检查和中间代码生成结合到语法分析中进行的技术称为语法制导翻译 (syntax-directed translation)。</strong></p>
 </blockquote>
-<h2 id="二-语法制导翻译的基本知识"><a class="markdownIt-Anchor" href="#二-语法制导翻译的基本知识"></a> 二、语法制导翻译的基本知识</h2>
-<div class="note danger"><p><strong>大量文字预警</strong></p></div>
-<h3 id="i-基本思想"><a class="markdownIt-Anchor" href="#i-基本思想"></a> I. 基本思想</h3>
-<ul>
+<h2 id="二、语法制导翻译的基本知识"><a href="#二、语法制导翻译的基本知识" class="headerlink" title="二、语法制导翻译的基本知识"></a>二、语法制导翻译的基本知识</h2><div class="note danger"><p><strong>大量文字预警</strong> </p></div>
+<h3 id="I-基本思想"><a href="#I-基本思想" class="headerlink" title="I. 基本思想"></a>I. 基本思想</h3><ul>
 <li>在进行语法分析的同时，完成相应的<strong>语义处理</strong>。</li>
 <li>一旦语法分析器识别出一个语法结构（例如 $ E \rightarrow E+T $ ）就要立即对其进行<strong>翻译</strong>。</li>
-<li>翻译是根据语言的语义进行的，并通过调用事先为该<strong>语法结构</strong>编写的<strong>语义子程序</strong>来实现。</li>
+<li>翻译是根据语言的语义进行的，并通过调用事先为该<strong>语法结构</strong>编写的<strong>语义子程序</strong>来实现。 </li>
 <li>对文法中的每个产生式附加一个/多个语义动作(或<strong>语义子程序</strong>)</li>
-<li>在语法分析的过程中，每当需要使用一个产生式进行<strong>推导或归约</strong>时，语法分析程序除执行相应的<strong>语法分析动作</strong>外，还要执行相应的语义动作(或<strong>调用相应的语义子程序</strong>)。</li>
+<li>在语法分析的过程中，每当需要使用一个产生式进行<strong>推导或归约</strong>时，语法分析程序除执行相应的<strong>语法分析动作</strong>外，还要执行相应的语义动作(或<strong>调用相应的语义子程序</strong>)。 </li>
 </ul>
-<h3 id="ii-语义子程序的功能"><a class="markdownIt-Anchor" href="#ii-语义子程序的功能"></a> II. 语义子程序的功能</h3>
-<ul>
+<h3 id="II-语义子程序的功能"><a href="#II-语义子程序的功能" class="headerlink" title="II. 语义子程序的功能"></a>II. 语义子程序的功能</h3><ul>
 <li>指明相应产生式中各个<strong>文法符号的具体含义</strong>，并规定了使用该产生式进行分析时所应采取的<strong>语义动作</strong>。</li>
 <li>语义信息是通过<strong>文法符号来携带和传递</strong>的。</li>
 </ul>
-<h3 id="iii-属性"><a class="markdownIt-Anchor" href="#iii-属性"></a> III. 属性</h3>
+<h3 id="III-属性"><a href="#III-属性" class="headerlink" title="III. 属性"></a>III. 属性</h3><ul>
+<li>一个文法符号X所携带的<strong>语义信息</strong>称为X的语义属性，简称为<strong>属性</strong></li>
+<li>它是根据翻译的需要设置的，主要用于描述语法结构的语义。</li>
+<li>文法符号的属性的计算规则称为<strong>语义规则</strong>。</li>
+<li><p>一个变量的属性有类型、值和存储地址等。</p>
+</li>
+<li><p>属性值的计算和产生式相关联，随着语法分析的进行，执行属性值的计算，完成语义分析和翻译的任务。</p>
+</li>
+<li><p>语法结构具有规定的语义，如：</p>
 <ul>
-<li>
-<p>一个文法符号X所携带的<strong>语义信息</strong>称为X的语义属性，简称为<strong>属性</strong></p>
-</li>
-<li>
-<p>它是根据翻译的需要设置的，主要用于描述语法结构的语义。</p>
-</li>
-<li>
-<p>文法符号的属性的计算规则称为<strong>语义规则</strong>。</p>
-</li>
-<li>
-<p>一个变量的属性有类型、值和存储地址等。</p>
-</li>
-<li>
-<p>属性值的计算和产生式相关联，随着语法分析的进行，执行属性值的计算，完成语义分析和翻译的任务。</p>
-</li>
-<li>
-<p>语法结构具有规定的语义，如：</p>
-<ul>
-<li>$ E \rightarrow E_1 + E_2 $	$ E.val := E_1.val + E_2.val $</li>
+<li>$ E \rightarrow E_1 + E_2 $    $ E.val := E_1.val + E_2.val $</li>
 </ul>
 </li>
 </ul>
-<h3 id="iv-属性值的计算及翻译工作同产生式相关联语法制导定义法"><a class="markdownIt-Anchor" href="#iv-属性值的计算及翻译工作同产生式相关联语法制导定义法"></a> IV. 属性值的计算及翻译工作同产生式相关联————语法制导定义法</h3>
-<ul>
+<h3 id="IV-属性值的计算及翻译工作同产生式相关联————语法制导定义法"><a href="#IV-属性值的计算及翻译工作同产生式相关联————语法制导定义法" class="headerlink" title="IV. 属性值的计算及翻译工作同产生式相关联————语法制导定义法"></a>IV. 属性值的计算及翻译工作同产生式相关联————语法制导定义法</h3><ul>
 <li>对应每一个产生式编写一个语义子程序，当一个产生式获得<strong>匹配</strong>时，就<strong>调用相应的语义子程序</strong>来实现语义检查与翻译。</li>
 <li>适宜在完成<strong>归约</strong>的时候进行。</li>
 </ul>
-<h3 id="v-语法制导定义"><a class="markdownIt-Anchor" href="#v-语法制导定义"></a> V. 语法制导定义</h3>
-<ul>
+<h3 id="V-语法制导定义"><a href="#V-语法制导定义" class="headerlink" title="V. 语法制导定义"></a>V. 语法制导定义</h3><ul>
 <li><strong>综合属性</strong>：节点的属性值是通过分析树中<strong>该节点或其子节点的属性值</strong>计算出来的</li>
 <li><strong>继承属性</strong>：节点的属性值是由<strong>该节点、该节点的兄弟节点或父节点的属性值</strong>计算出来的</li>
-<li><strong>固有属性</strong>：通过词法分析<strong>直接得到</strong>的属性</li>
+<li><strong>固有属性</strong>：通过词法分析<strong>直接得到</strong>的属性 </li>
 </ul>
-<h3 id="vi-s-属性定义"><a class="markdownIt-Anchor" href="#vi-s-属性定义"></a> VI. S-属性定义</h3>
-<ul>
+<h3 id="VI-S-属性定义"><a href="#VI-S-属性定义" class="headerlink" title="VI. S-属性定义"></a>VI. S-属性定义</h3><ul>
 <li>只含<strong>综合属性</strong>的语法制导定义称为S-属性定义</li>
 <li>通常在<strong>自底向上</strong>的分析方法计算属性值</li>
 <li>可以按照<strong>自下而上</strong>的顺序来计算分析树中节点的属性</li>
 <li>在建立每一个结点处使用语义规则来计算综合属性值，即在用哪个产生式进行归约后，就执行那个产生式的S-属性定义计算属性的值</li>
 </ul>
-<h2 id="三-s-属性定义的自底向上计算实现"><a class="markdownIt-Anchor" href="#三-s-属性定义的自底向上计算实现"></a> 三、S-属性定义的自底向上计算实现</h2>
-<h3 id="i-思想"><a class="markdownIt-Anchor" href="#i-思想"></a> I. 思想</h3>
-<ul>
+<h2 id="三、S-属性定义的自底向上计算实现"><a href="#三、S-属性定义的自底向上计算实现" class="headerlink" title="三、S-属性定义的自底向上计算实现"></a>三、S-属性定义的自底向上计算实现</h2><h3 id="I-思想"><a href="#I-思想" class="headerlink" title="I. 思想"></a>I. 思想</h3><ul>
 <li>将每个语义规则放到相应<strong>产生式的末尾</strong>即可得到一个<strong>翻译模式</strong>（后缀式语法制导翻译模式）</li>
 <li>对产生式<strong>归约</strong>时执行语义动作</li>
 </ul>
-<h3 id="ii-条件"><a class="markdownIt-Anchor" href="#ii-条件"></a> II. 条件</h3>
-<ul>
+<h3 id="II-条件"><a href="#II-条件" class="headerlink" title="II. 条件"></a>II. 条件</h3><ul>
 <li><strong>在LR分析过程中实现</strong></li>
 </ul>
-<h3 id="iii-实现"><a class="markdownIt-Anchor" href="#iii-实现"></a> III. 实现</h3>
+<h3 id="III-实现"><a href="#III-实现" class="headerlink" title="III. 实现"></a>III. 实现</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -550,49 +525,39 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li>
-<p>lexval: <strong>固有属性</strong>，通过词法分析直接得到的属性。</p>
+<li>lexval: <strong>固有属性</strong>，通过词法分析直接得到的属性。</li>
+<li><p>val: <strong>综合属性</strong>，值为该节点或其子节点的属性值计算出来的</p>
 </li>
-<li>
-<p>val: <strong>综合属性</strong>，值为该节点或其子节点的属性值计算出来的</p>
-</li>
-<li>
-<p>需要实现表达式 $ 61 + 7 * 8 + 3 * ( 2 + 1111 ) $ 的值的计算</p>
+<li><p>需要实现表达式 $ 61 + 7 <em> 8 + 3 </em> ( 2 + 1111 ) $ 的值的计算</p>
 </li>
 </ul>
-<h4 id="1-语义规则存储"><a class="markdownIt-Anchor" href="#1-语义规则存储"></a> 1. 语义规则存储</h4>
-<ul>
+<h4 id="1-语义规则存储"><a href="#1-语义规则存储" class="headerlink" title="1. 语义规则存储"></a>1. 语义规则存储</h4><ul>
 <li>需要将语义规则存入文法中，由于在语法分析器中，已经有固定的函数来处理文法了，为了避免修改原有的函数，我将语义规则存入了另一个文件。</li>
-<li>语义规则简化为： $ \lbrace S=E, E=E+T, E=T, T=T*F, T=F, F=E, F=g \rbrace $</li>
+<li>语义规则简化为： $ \lbrace S=E, E=E+T, E=T, T=T*F, T=F, F=E, F=g \rbrace $ </li>
 </ul>
-<h4 id="2-读取语义规则生成输入流与数值流的对应关系"><a class="markdownIt-Anchor" href="#2-读取语义规则生成输入流与数值流的对应关系"></a> 2. 读取语义规则，生成输入流与数值流的对应关系</h4>
-<ul>
-<li>在我实现的语法分析器中，输入流是这种形式的，如果计算 $ 61+7<em>8+3</em>(2+1111) $ ，（字符）输入流 $ g+g<em>g+g</em>(g*g) $ , $ NUM $ 被映射为符号 $ g $ ,用于对应文法。</li>
+<h4 id="2-读取语义规则，生成输入流与数值流的对应关系"><a href="#2-读取语义规则，生成输入流与数值流的对应关系" class="headerlink" title="2. 读取语义规则，生成输入流与数值流的对应关系"></a>2. 读取语义规则，生成输入流与数值流的对应关系</h4><ul>
+<li>在我实现的语法分析器中，输入流是这种形式的，如果计算 $ 61 + 7 <em> 8 + 3 </em> ( 2 + 1111 ) $ ，（字符）输入流 $ g + g <em> g + g </em> ( g * g ) $  ,  $ NUM $ 被映射为符号 $ g $ ,用于对应文法。</li>
 <li>由于语法制导翻译是在语义分析中实现的，因此我想可以增加一个输入流，为数值流，与字符输入流相对应。</li>
 <li>数值流规则：数字的值为该数字，其余字符的值均为’_’。</li>
 </ul>
-<h4 id="3-创建一个栈分析栈值栈"><a class="markdownIt-Anchor" href="#3-创建一个栈分析栈值栈"></a> 3. 创建一个栈————分析栈（值栈）</h4>
-<ul>
+<h4 id="3-创建一个栈————分析栈（值栈）"><a href="#3-创建一个栈————分析栈（值栈）" class="headerlink" title="3. 创建一个栈————分析栈（值栈）"></a>3. 创建一个栈————分析栈（值栈）</h4><ul>
 <li>该栈与符号栈相对应。对应位置即为符号的值。</li>
 <li>归约时分析栈同符号栈归约方式相同，只是分析栈需要计算归约出字符的值。</li>
 </ul>
-<h4 id="4-分析栈的归约"><a class="markdownIt-Anchor" href="#4-分析栈的归约"></a> 4. 分析栈的归约</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculateRecuctionVal</span><span class="params">(reductionVals, reductionIndex)</span>:</span> <span class="comment"># reductionVals: 要归约的所有符号值，reductionIndex: 归约的文法下标</span></span><br><span class="line">    valsDict = &#123;&#125;</span><br><span class="line">    i = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> grammarOriginalListsWithArrow[reductionIndex][i] != <span class="string">'&gt;'</span>:</span><br><span class="line">        <span class="keyword">if</span> reductionVals[i] != <span class="string">'_'</span>:</span><br><span class="line">            valsDict[grammarOriginalListsWithArrow[reductionIndex][i]] = reductionVals[i]</span><br><span class="line">        i = i<span class="number">-1</span></span><br><span class="line">    resultVal = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'*'</span> <span class="keyword">in</span> rule[reductionIndex]:</span><br><span class="line">        charIndex = rule[reductionIndex].index(<span class="string">'*'</span>)</span><br><span class="line">        resultVal = int(valsDict[rule[reductionIndex][charIndex<span class="number">-1</span>]]) * int(valsDict[rule[reductionIndex][charIndex+<span class="number">1</span>]])</span><br><span class="line">    <span class="keyword">elif</span> <span class="string">'+'</span> <span class="keyword">in</span> rule[reductionIndex]:</span><br><span class="line">        charIndex = rule[reductionIndex].index(<span class="string">'+'</span>)</span><br><span class="line">        resultVal = int(valsDict[rule[reductionIndex][charIndex<span class="number">-1</span>]]) + int(valsDict[rule[reductionIndex][charIndex+<span class="number">1</span>]])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        resultVal = int(valsDict[rule[reductionIndex][<span class="number">-1</span>]])</span><br><span class="line">    print(valsDict)</span><br><span class="line">    <span class="keyword">return</span> resultVal</span><br></pre></td></tr></table></figure>
+<h4 id="4-分析栈的归约"><a href="#4-分析栈的归约" class="headerlink" title="4. 分析栈的归约"></a>4. 分析栈的归约</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculateRecuctionVal</span><span class="params">(reductionVals, reductionIndex)</span>:</span> <span class="comment"># reductionVals: 要归约的所有符号值，reductionIndex: 归约的文法下标</span></span><br><span class="line">    valsDict = &#123;&#125;</span><br><span class="line">    i = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> grammarOriginalListsWithArrow[reductionIndex][i] != <span class="string">'&gt;'</span>:</span><br><span class="line">        <span class="keyword">if</span> reductionVals[i] != <span class="string">'_'</span>:</span><br><span class="line">            valsDict[grammarOriginalListsWithArrow[reductionIndex][i]] = reductionVals[i]</span><br><span class="line">        i = i<span class="number">-1</span></span><br><span class="line">    resultVal = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'*'</span> <span class="keyword">in</span> rule[reductionIndex]:</span><br><span class="line">        charIndex = rule[reductionIndex].index(<span class="string">'*'</span>)</span><br><span class="line">        resultVal = int(valsDict[rule[reductionIndex][charIndex<span class="number">-1</span>]]) * int(valsDict[rule[reductionIndex][charIndex+<span class="number">1</span>]])</span><br><span class="line">    <span class="keyword">elif</span> <span class="string">'+'</span> <span class="keyword">in</span> rule[reductionIndex]:</span><br><span class="line">        charIndex = rule[reductionIndex].index(<span class="string">'+'</span>)</span><br><span class="line">        resultVal = int(valsDict[rule[reductionIndex][charIndex<span class="number">-1</span>]]) + int(valsDict[rule[reductionIndex][charIndex+<span class="number">1</span>]])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        resultVal = int(valsDict[rule[reductionIndex][<span class="number">-1</span>]])</span><br><span class="line">    print(valsDict)</span><br><span class="line">    <span class="keyword">return</span> resultVal</span><br></pre></td></tr></table></figure>
 <ul>
 <li>针对该文法，我写了计算该文法归约字符值的函数。</li>
-<li>函数思想
-<ul>
-<li>创建一个映射，为文法中产生式中的字符与值的映射。比如我们要计算 $ 11+627 $ 使用  $ E \rightarrow E + T $ , 建立映射： $ \lbrace E:11, T:627 \rbrace $</li>
+<li>函数思想<ul>
+<li>创建一个映射，为文法中产生式中的字符与值的映射。比如我们要计算 $ 11+627 $ 使用  $ E \rightarrow E + T $ , 建立映射： $ \lbrace E:11, T:627 \rbrace $ </li>
 <li>读取文法对应的语义规则，进行相应计算。 $ E \rightarrow E + T $ 的语义规则是 $ E = E + T $ ，即把 $ E $ 的值与 $ T $ 值相加，赋值给 $ E $ .</li>
 <li>返回 $ E $ 的值</li>
 </ul>
 </li>
 </ul>
-<h2 id="四-源码"><a class="markdownIt-Anchor" href="#四-源码"></a> 四、 源码</h2>
-<blockquote>
-<p><a href="https://git.dev.tencent.com/liysuzy/Compilers.git" target="_blank" rel="noopener">https://git.dev.tencent.com/liysuzy/Compilers.git</a><br>
-如有问题请与我联系，1121899707@msn.cn</p>
+<h2 id="四、-源码"><a href="#四、-源码" class="headerlink" title="四、 源码"></a>四、 源码</h2><blockquote>
+<p><a href="https://git.dev.tencent.com/liysuzy/Compilers.git" target="_blank" rel="noopener">https://git.dev.tencent.com/liysuzy/Compilers.git</a><br>如有问题请与我联系，1121899707@msn.cn</p>
 </blockquote>
 
       
@@ -621,9 +586,9 @@
       
         <div class="post-tags">
           
-            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
-          
             <a href="/liysuzy/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/liysuzy/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
           
             <a href="/liysuzy/tags/语法分析/" rel="tag"><i class="fa fa-tag"></i> 语法分析</a>
           
@@ -836,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-什么是语法制导翻译"><span class="nav-number">1.</span> <span class="nav-text"> 一、什么是语法制导翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-语法制导翻译的基本知识"><span class="nav-number">2.</span> <span class="nav-text"> 二、语法制导翻译的基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-基本思想"><span class="nav-number">2.1.</span> <span class="nav-text"> I. 基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-语义子程序的功能"><span class="nav-number">2.2.</span> <span class="nav-text"> II. 语义子程序的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-属性"><span class="nav-number">2.3.</span> <span class="nav-text"> III. 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-属性值的计算及翻译工作同产生式相关联语法制导定义法"><span class="nav-number">2.4.</span> <span class="nav-text"> IV. 属性值的计算及翻译工作同产生式相关联————语法制导定义法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-语法制导定义"><span class="nav-number">2.5.</span> <span class="nav-text"> V. 语法制导定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi-s-属性定义"><span class="nav-number">2.6.</span> <span class="nav-text"> VI. S-属性定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-s-属性定义的自底向上计算实现"><span class="nav-number">3.</span> <span class="nav-text"> 三、S-属性定义的自底向上计算实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-思想"><span class="nav-number">3.1.</span> <span class="nav-text"> I. 思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-条件"><span class="nav-number">3.2.</span> <span class="nav-text"> II. 条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-实现"><span class="nav-number">3.3.</span> <span class="nav-text"> III. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-语义规则存储"><span class="nav-number">3.3.1.</span> <span class="nav-text"> 1. 语义规则存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取语义规则生成输入流与数值流的对应关系"><span class="nav-number">3.3.2.</span> <span class="nav-text"> 2. 读取语义规则，生成输入流与数值流的对应关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-创建一个栈分析栈值栈"><span class="nav-number">3.3.3.</span> <span class="nav-text"> 3. 创建一个栈————分析栈（值栈）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-分析栈的归约"><span class="nav-number">3.3.4.</span> <span class="nav-text"> 4. 分析栈的归约</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-源码"><span class="nav-number">4.</span> <span class="nav-text"> 四、 源码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是语法制导翻译"><span class="nav-number">1.</span> <span class="nav-text">一、什么是语法制导翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、语法制导翻译的基本知识"><span class="nav-number">2.</span> <span class="nav-text">二、语法制导翻译的基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-基本思想"><span class="nav-number">2.1.</span> <span class="nav-text">I. 基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-语义子程序的功能"><span class="nav-number">2.2.</span> <span class="nav-text">II. 语义子程序的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-属性"><span class="nav-number">2.3.</span> <span class="nav-text">III. 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV-属性值的计算及翻译工作同产生式相关联————语法制导定义法"><span class="nav-number">2.4.</span> <span class="nav-text">IV. 属性值的计算及翻译工作同产生式相关联————语法制导定义法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V-语法制导定义"><span class="nav-number">2.5.</span> <span class="nav-text">V. 语法制导定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VI-S-属性定义"><span class="nav-number">2.6.</span> <span class="nav-text">VI. S-属性定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、S-属性定义的自底向上计算实现"><span class="nav-number">3.</span> <span class="nav-text">三、S-属性定义的自底向上计算实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-思想"><span class="nav-number">3.1.</span> <span class="nav-text">I. 思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-条件"><span class="nav-number">3.2.</span> <span class="nav-text">II. 条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-实现"><span class="nav-number">3.3.</span> <span class="nav-text">III. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-语义规则存储"><span class="nav-number">3.3.1.</span> <span class="nav-text">1. 语义规则存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-读取语义规则，生成输入流与数值流的对应关系"><span class="nav-number">3.3.2.</span> <span class="nav-text">2. 读取语义规则，生成输入流与数值流的对应关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-创建一个栈————分析栈（值栈）"><span class="nav-number">3.3.3.</span> <span class="nav-text">3. 创建一个栈————分析栈（值栈）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-分析栈的归约"><span class="nav-number">3.3.4.</span> <span class="nav-text">4. 分析栈的归约</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、-源码"><span class="nav-number">4.</span> <span class="nav-text">四、 源码</span></a></li></ol></div>
             
 
           </div>
