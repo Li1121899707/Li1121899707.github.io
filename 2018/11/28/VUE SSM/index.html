@@ -86,7 +86,7 @@
 
 
 
-  <meta name="keywords" content="SSM,后端,VUE,前端," />
+  <meta name="keywords" content="SSM,VUE,前端,后端," />
 
 
 
@@ -97,20 +97,46 @@
 
 
 
-<meta name="description" content="一、创建 VUE 项目  1. node.js 环境搭建  ① node.js 安装  ② 检测 node.js, npm 是否安装成功  * ③ nrm 安装  * ④ cnpm 安装  nrm 的作用 实际上提供了最常用的 npm 包镜像地址(类似于 python 包的豆瓣源,清华源),能够快速切换下载安装包的服务器地址. 1.运行 npm i nrm -g 全局安装 nrm 包 2.使用">
-<meta name="keywords" content="SSM,后端,VUE,前端">
+<meta name="description" content="VUE 配置  一、创建 VUE 项目  1. node.js 环境搭建  ① node.js 安装  ② 检测 node.js, npm 是否安装成功  * ③ nrm 安装  * ④ cnpm 安装  nrm 的作用 实际上提供了最常用的 npm 包镜像地址(类似于 python 包的豆瓣源,清华源),能够快速切换下载安装包的服务器地址. 1.运行 npm i nrm -g 全局安装 nrm">
+<meta name="keywords" content="SSM,VUE,前端,后端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VUE SSM">
 <meta property="og:url" content="http://liysuzy.coding.me/2018/11/28/VUE SSM/index.html">
 <meta property="og:site_name" content="LiySuzy">
-<meta property="og:description" content="一、创建 VUE 项目  1. node.js 环境搭建  ① node.js 安装  ② 检测 node.js, npm 是否安装成功  * ③ nrm 安装  * ④ cnpm 安装  nrm 的作用 实际上提供了最常用的 npm 包镜像地址(类似于 python 包的豆瓣源,清华源),能够快速切换下载安装包的服务器地址. 1.运行 npm i nrm -g 全局安装 nrm 包 2.使用">
+<meta property="og:description" content="VUE 配置  一、创建 VUE 项目  1. node.js 环境搭建  ① node.js 安装  ② 检测 node.js, npm 是否安装成功  * ③ nrm 安装  * ④ cnpm 安装  nrm 的作用 实际上提供了最常用的 npm 包镜像地址(类似于 python 包的豆瓣源,清华源),能够快速切换下载安装包的服务器地址. 1.运行 npm i nrm -g 全局安装 nrm">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181130163235.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181130163609.png">
-<meta property="og:updated_time" content="2018-11-30T08:59:48.859Z">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209163836.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164109.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164223.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164358.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164505.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164552.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209165428.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164942.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209170337.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209171120.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529193119.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529204814.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529204859.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529204923.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205210.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205418.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205610.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205832.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529210859.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211144.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211833.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211911.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211949.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529212007.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529212246.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529212616.png">
+<meta property="og:updated_time" content="2019-11-17T03:05:48.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VUE SSM">
-<meta name="twitter:description" content="一、创建 VUE 项目  1. node.js 环境搭建  ① node.js 安装  ② 检测 node.js, npm 是否安装成功  * ③ nrm 安装  * ④ cnpm 安装  nrm 的作用 实际上提供了最常用的 npm 包镜像地址(类似于 python 包的豆瓣源,清华源),能够快速切换下载安装包的服务器地址. 1.运行 npm i nrm -g 全局安装 nrm 包 2.使用">
+<meta name="twitter:description" content="VUE 配置  一、创建 VUE 项目  1. node.js 环境搭建  ① node.js 安装  ② 检测 node.js, npm 是否安装成功  * ③ nrm 安装  * ④ cnpm 安装  nrm 的作用 实际上提供了最常用的 npm 包镜像地址(类似于 python 包的豆瓣源,清华源),能够快速切换下载安装包的服务器地址. 1.运行 npm i nrm -g 全局安装 nrm">
 <meta name="twitter:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181130163235.png">
 
 
@@ -401,7 +427,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,360 字
+                  2,929 字
                 </span>
               
 
@@ -417,7 +443,7 @@
                   <span class="post-meta-item-text">阅读时长 </span>
                 
                 <span title="阅读时长">
-                  6 分钟
+                  13 分钟
                 </span>
               
             </div>
@@ -438,7 +464,8 @@
       
 
       
-        <h2 id="一-创建-vue-项目"><a class="markdownIt-Anchor" href="#一-创建-vue-项目"></a> 一、创建 VUE 项目</h2>
+        <h2 id="vue-配置"><a class="markdownIt-Anchor" href="#vue-配置"></a> VUE 配置</h2>
+<h3 id="一-创建-vue-项目"><a class="markdownIt-Anchor" href="#一-创建-vue-项目"></a> 一、创建 VUE 项目</h3>
 <h3 id="1-nodejs-环境搭建"><a class="markdownIt-Anchor" href="#1-nodejs-环境搭建"></a> 1. node.js 环境搭建</h3>
 <h4 id="1-nodejs-安装"><a class="markdownIt-Anchor" href="#1-nodejs-安装"></a> ① node.js 安装</h4>
 <h4 id="2-检测-nodejs-npm-是否安装成功"><a class="markdownIt-Anchor" href="#2-检测-nodejs-npm-是否安装成功"></a> ② 检测 node.js, npm 是否安装成功</h4>
@@ -567,7 +594,172 @@ Qs 这个库是帮助我们解决这个问题的</p>
 <h4 id="3-打包"><a class="markdownIt-Anchor" href="#3-打包"></a> ③ 打包</h4>
 <p>实质是执行package.json中定义的build.js文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-<h2 id="二-创建-ssm-项目"><a class="markdownIt-Anchor" href="#二-创建-ssm-项目"></a> 二、创建 SSM 项目</h2>
+<h2 id="spring-boot-配置"><a class="markdownIt-Anchor" href="#spring-boot-配置"></a> Spring Boot 配置</h2>
+<h3 id="一-java安装"><a class="markdownIt-Anchor" href="#一-java安装"></a> 一、JAVA安装</h3>
+<p><strong>环境变量</strong>：<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209163836.png" alt=""></p>
+<h3 id="二-maven安装"><a class="markdownIt-Anchor" href="#二-maven安装"></a> 二、Maven安装</h3>
+<blockquote>
+<p>参考： <a href="http://www.cnblogs.com/wkrbky/p/6350334.html?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">http://www.cnblogs.com/wkrbky/p/6350334.html?utm_source=itdadao&amp;utm_medium=referral</a></p>
+</blockquote>
+<p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">Maven官网</a></p>
+<ol>
+<li>下载下图文件，将它解压到你要安装 Maven 的文件夹。</li>
+</ol>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164109.png" alt=""></p>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164223.png" alt=""></p>
+<ol start="2">
+<li>添加环境变量 <code>M2_HOME</code> <code>MAVEN_HOME</code></li>
+</ol>
+<p>添加 <code>M2_HOME</code> 和 <code>MAVEN_HOME</code> 环境变量到 Windows 环境变量，并将其指向你的 Maven 文件夹。</p>
+<blockquote>
+<p><code>M2_HOME</code> 或 <code>MAVEN_HOME</code><br>
+Maven 说只是添加 <code>M2_HOME</code> , 但一些项目仍引用 Maven 的文件夹<code>MAVEN_HOME</code>, 因此，为了安全也把它添加进去。</p>
+</blockquote>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164358.png" alt=""></p>
+<ol start="3">
+<li>添加到 <code>PATH</code></li>
+</ol>
+<p>更新 <code>PATH</code> 变量，添加 Maven <code>bin</code> 文件夹到 <code>PATH</code> 的最后，如： <code>%M2_HOME%\bin</code>, 这样就可以在命令中的任何目录下运行 Maven 命令了。</p>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164505.png" alt=""></p>
+<ol start="4">
+<li>验证是否成功添加环境变量</li>
+</ol>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164552.png" alt=""></p>
+<p>如果你看到类似消息，说明 Apache Maven 在 Windows 上已安装成功。</p>
+<h3 id="三-配置-maven-本地仓库"><a class="markdownIt-Anchor" href="#三-配置-maven-本地仓库"></a> 三、配置 Maven 本地仓库</h3>
+<ol>
+<li>
+<p>创建一个仓库文件夹 <code>maven-repository</code> ，该目录用作maven的本地库。</p>
+</li>
+<li>
+<p>打开 Maven 安装目录下 <code>\conf\settings.xml</code> 文件，修改下面代码。<code>localRepository</code> 节点默认是被注释掉的，需要把它移到注释之外，然后将 <code>localRepository</code> 节点的值改为我们设定的文件夹。</p>
+</li>
+</ol>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209165428.png" alt=""></p>
+<blockquote>
+<p><strong><code>localRepository</code> 节点用于配置本地仓库。</strong><br>
+本地仓库其实起到了一个缓存的作用，它的默认地址是 C:\Users\用户名.m2。当我们从 maven 中获取 jar 包的时候，maven 首先会在本地仓库中查找，如果本地仓库有则返回；如果没有则从远程仓库中获取包，并在本地库中保存。<br>
+此外，我们在 maven 项目中运行 mvn install，项目将会自动打包并安装到本地仓库中。</p>
+</blockquote>
+<ol start="4">
+<li>运行一下DOS命令<br>
+<code>mvn help:system</code><br>
+如果前面的配置成功，那么 <code>maven-repository</code> 文件夹会出现一些文件。</li>
+</ol>
+<h3 id="四-intellij-配置-maven"><a class="markdownIt-Anchor" href="#四-intellij-配置-maven"></a> 四、IntelliJ 配置 Maven</h3>
+<ol>
+<li>
+<p>点击 Settings<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209164942.png" alt=""></p>
+</li>
+<li>
+<p>找到 <code>Build,Execution,Deployment–&gt;Builds Tools–&gt;Maven</code></p>
+</li>
+</ol>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209170337.png" alt=""></p>
+<p>修改标红处为上面配置的路径。</p>
+<ol start="3">
+<li>打开maven下的importing页面，勾选右面Sources和Documentation即可。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20181209171120.png" alt=""></li>
+</ol>
+<h3 id="五-创建springboot-mybatis-工程"><a class="markdownIt-Anchor" href="#五-创建springboot-mybatis-工程"></a> 五、创建SpringBoot + Mybatis 工程</h3>
+<h4 id="一创建项目"><a class="markdownIt-Anchor" href="#一创建项目"></a> （一）创建项目</h4>
+<ol>
+<li>
+<p>点击 File ，创建新工程，选择Spring Initializr。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529193119.png" alt=""></p>
+</li>
+<li>
+<p>填写相关信息<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529204814.png" alt=""></p>
+</li>
+<li>
+<p>选择需要加入的依赖<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529204859.png" alt=""></p>
+</li>
+</ol>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529204923.png" alt=""></p>
+<p>下一步，Finish即可</p>
+<h4 id="二相关配置及基本目录结构创建"><a class="markdownIt-Anchor" href="#二相关配置及基本目录结构创建"></a> （二）相关配置及基本目录结构创建</h4>
+<ol>
+<li>
+<p>初始项目结构<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205210.png" alt=""></p>
+</li>
+<li>
+<p>删掉<code>application.properties</code>, 在相同的位置创建<code>application.yml</code><br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205418.png" alt=""></p>
+</li>
+<li>
+<p>在<code>application.yml</code>中添加<code>server</code>，<code>datasource</code>的配置。</p>
+</li>
+</ol>
+<ul>
+<li><code>server</code>: 端口号</li>
+<li><code>datasource</code>: 包括用户名、密码、数据库访问地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 9000</span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    username: root</span><br><span class="line">    password: 123456</span><br><span class="line">    url: jdbc:mysql://127.0.0.1:3306/vblog?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line"></span><br><span class="line">mybatis:</span><br><span class="line">  config-location: classpath:mybatis/mybatis-config.xml</span><br><span class="line">  mapper-locations: classpath:mybatis/mapper/*.xml</span><br></pre></td></tr></table></figure>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205610.png" alt=""></p>
+<ol start="4">
+<li>创建SpringBoot目录结构<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529205832.png" alt=""></li>
+</ol>
+<blockquote>
+<p>关于 Controller Service层<br>
+参考 <a href="https://segmentfault.com/q/1010000018560036?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/q/1010000018560036?utm_source=tag-newest</a><br>
+假设我有一个注册接口，controller写了一个@RequestMapping(&quot;/register&quot;)之后，有这些东西:<br>
+①验证验证码和重复密码是否正确<br>
+②到数据库查找用户名和邮箱是不是已经存在<br>
+③上面验证都没问题，向数据库插入一条数据<br>
+④向用户邮箱发送一封激活邮件<br>
+⑤返回注册成功给用户</p>
+<p>业务逻辑要在service中实现，而control负责把service层返回的数据加工转换为方便jsp或者其他模板容易渲染的格式，传递给view层，或者按照前端要求的格式转换为json传递给前端（ajax方式）。<br>
+除了5要在controller写之外，其他都应该写在service层。当然，狭隘的业务逻辑只是3和4。1/2属于数据验证，数据验证和业务逻辑有一定关系，如果按照狭义的业务逻辑理解，1/2也可以放在controller中。</p>
+</blockquote>
+<ol start="5">
+<li>向<code>mybatis-config.xml</code>中添加内容<br>
+当前项目只用到了一个配置：</li>
+</ol>
+<ul>
+<li>开启驼峰命名规则自动转换</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;settings&gt;</span><br><span class="line">        &lt;!--开启驼峰命名规则自动转换--&gt;</span><br><span class="line">        &lt;setting name=&quot;mapUnderscoreToCamelCase&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;/settings&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="三可忽略添加自动化工具"><a class="markdownIt-Anchor" href="#三可忽略添加自动化工具"></a> （三*[可忽略]）添加自动化工具</h4>
+<ol>
+<li>修改<code>pom.xml</code>，添加相关依赖<br>
+位置：<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529210859.png" alt=""></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Mybatis 自动化工具 --&gt;</span><br><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.7&lt;/version&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.3.7&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;8.0.16&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;mybatis generator&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;generate&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;verbose&gt;true&lt;/verbose&gt;</span><br><span class="line">        &lt;!-- 覆盖生成的文件（大型项目不允许开启，避免更改他人文件） --&gt;</span><br><span class="line">        &lt;overwrite&gt;true&lt;/overwrite&gt;</span><br><span class="line">        &lt;!--&lt;overwrite&gt;false&lt;/overwrite&gt;--&gt;</span><br><span class="line">        &lt;configurationFile&gt;</span><br><span class="line">            src/main/resources/mybatis/mybatis-generator.xml</span><br><span class="line">        &lt;/configurationFile&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建<code>mybatis-generator.xml</code>文件，配置generator<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211144.png" alt=""></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE generatorConfiguration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;&gt;</span><br><span class="line">&lt;generatorConfiguration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;context id=&quot;DB2Tables&quot;    targetRuntime=&quot;MyBatis3&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 去掉生成的注释 --&gt;</span><br><span class="line">        &lt;commentGenerator&gt;</span><br><span class="line">            &lt;property name=&quot;suppressDate&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">            &lt;property name=&quot;suppressAllComments&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">        &lt;/commentGenerator&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--数据库链接地址账号密码--&gt;</span><br><span class="line">        &lt;!--前面几个属性设置时区，最后一个属性不添加，生成的dao类只有插入操作--&gt;</span><br><span class="line">        &lt;!-- nullCatalogMeansCurrent=true 意思为生成所有方法，包括insert update delete 简单的select --&gt;</span><br><span class="line">        &lt;!-- com.mysql.cj.jdbc.Driver 避免报过时的错误 --&gt;</span><br><span class="line">        &lt;jdbcConnection driverClass=&quot;com.mysql.cj.jdbc.Driver&quot; connectionURL=&quot;jdbc:mysql://127.0.0.1:3306/vblog?useUnicode=true&amp;amp;useJDBCCompliantTimezoneShift=true&amp;amp;useLegacyDatetimeCode=false&amp;amp;serverTimezone=UTC&amp;amp;nullCatalogMeansCurrent=true&quot; userId=&quot;root&quot; password=&quot;123456&quot;&gt;</span><br><span class="line">        &lt;/jdbcConnection&gt;</span><br><span class="line">        &lt;!--生成实体类存放位置--&gt;</span><br><span class="line">        &lt;javaModelGenerator targetPackage=&quot;com.example.vblog.bean&quot; targetProject=&quot;src/main/java&quot;&gt;</span><br><span class="line">            &lt;property name=&quot;enableSubPackages&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">            &lt;property name=&quot;trimStrings&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">        &lt;/javaModelGenerator&gt;</span><br><span class="line">        &lt;!--生成映射文件存放位置--&gt;</span><br><span class="line">        &lt;sqlMapGenerator targetPackage=&quot;mybatis/mapper&quot; targetProject=&quot;src/main/resources&quot;&gt;</span><br><span class="line">            &lt;property name=&quot;enableSubPackages&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">        &lt;/sqlMapGenerator&gt;</span><br><span class="line">        &lt;!--生成Mapper Interface存放位置--&gt;</span><br><span class="line">        &lt;javaClientGenerator type=&quot;XMLMAPPER&quot; targetPackage=&quot;com.example.vblog.mapper&quot; targetProject=&quot;src/main/java&quot;&gt;</span><br><span class="line">            &lt;property name=&quot;enableSubPackages&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">        &lt;/javaClientGenerator&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--生成对应表及类名--&gt;</span><br><span class="line">        &lt;table tableName=&quot;user_info&quot; domainObjectName=&quot;UserInfoBean&quot; enableCountByExample=&quot;false&quot; enableUpdateByExample=&quot;false&quot;</span><br><span class="line">               enableDeleteByExample=&quot;false&quot; enableSelectByExample=&quot;false&quot; selectByExampleQueryId=&quot;false&quot;/&gt;</span><br><span class="line">    &lt;/context&gt;</span><br><span class="line">&lt;/generatorConfiguration&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>配置运行generator<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211833.png" alt=""></li>
+</ol>
+<p>添加maven工具<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211911.png" alt=""></p>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529211949.png" alt=""></p>
+<p><img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529212007.png" alt=""></p>
+<ol start="4">
+<li>运行generator<br>
+点击绿色三角运行</li>
+</ol>
+<ul>
+<li>
+<p>自动生成后的项目结构<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529212246.png" alt=""></p>
+</li>
+<li>
+<p>生成命令行结果<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20190529212616.png" alt=""></p>
+</li>
+</ul>
+<h4 id="四写一个小demo测试是否可以正常运行"><a class="markdownIt-Anchor" href="#四写一个小demo测试是否可以正常运行"></a> （四）写一个小Demo测试是否可以正常运行</h4>
 
       
     </div>
@@ -597,11 +789,11 @@ Qs 这个库是帮助我们解决这个问题的</p>
           
             <a href="/liysuzy/tags/SSM/" rel="tag"><i class="fa fa-tag"></i> SSM</a>
           
-            <a href="/liysuzy/tags/后端/" rel="tag"><i class="fa fa-tag"></i> 后端</a>
-          
             <a href="/liysuzy/tags/VUE/" rel="tag"><i class="fa fa-tag"></i> VUE</a>
           
             <a href="/liysuzy/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/liysuzy/tags/后端/" rel="tag"><i class="fa fa-tag"></i> 后端</a>
           
         </div>
       
@@ -614,8 +806,8 @@ Qs 这个库是帮助我们解决这个问题的</p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/liysuzy/2018/11/11/互联网开发技术 session2/" rel="next" title="互联网开发技术 —— Session2">
-                <i class="fa fa-chevron-left"></i> 互联网开发技术 —— Session2
+              <a href="/liysuzy/2018/11/11/互联网开发技术/" rel="next" title="互联网开发技术">
+                <i class="fa fa-chevron-left"></i> 互联网开发技术
               </a>
             
           </div>
@@ -718,7 +910,7 @@ Qs 这个库是帮助我们解决这个问题的</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/liysuzy/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -729,7 +921,7 @@ Qs 这个库是帮助我们解决这个问题的</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/liysuzy/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -814,7 +1006,7 @@ Qs 这个库是帮助我们解决这个问题的</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-创建-vue-项目"><span class="nav-number">1.</span> <span class="nav-text"> 一、创建 VUE 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-nodejs-环境搭建"><span class="nav-number">1.1.</span> <span class="nav-text"> 1. node.js 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-nodejs-安装"><span class="nav-number">1.1.1.</span> <span class="nav-text"> ① node.js 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-检测-nodejs-npm-是否安装成功"><span class="nav-number">1.1.2.</span> <span class="nav-text"> ② 检测 node.js, npm 是否安装成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-nrm-安装"><span class="nav-number">1.1.3.</span> <span class="nav-text"> * ③ nrm 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-cnpm-安装"><span class="nav-number">1.1.4.</span> <span class="nav-text"> * ④ cnpm 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意npm-无法全局安装的问题解决方案"><span class="nav-number">1.1.5.</span> <span class="nav-text"> 注意：npm 无法全局安装的问题解决方案：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-vue-环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text"> 2. VUE 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-cli-安装"><span class="nav-number">1.2.1.</span> <span class="nav-text"> vue-cli 安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-搭建-vue-项目"><span class="nav-number">1.3.</span> <span class="nav-text"> 3. 搭建 VUE 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建-vue-项目"><span class="nav-number">1.3.1.</span> <span class="nav-text"> (1) 创建 VUE 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装依赖"><span class="nav-number">1.3.2.</span> <span class="nav-text"> (2) 安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-一些常用指令"><span class="nav-number">1.3.3.</span> <span class="nav-text"> (3) 一些常用指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置-vue-项目"><span class="nav-number">1.4.</span> <span class="nav-text"> 4. 配置 VUE 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在-vue-中使用-scss"><span class="nav-number">1.4.1.</span> <span class="nav-text"> (1) 在 VUE 中使用 scss</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装-node-sass-和-sass-loadr"><span class="nav-number">1.4.1.1.</span> <span class="nav-text"> ① 安装 node-sass 和 sass-loadr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-修改相关-webpack-配置"><span class="nav-number">1.4.1.2.</span> <span class="nav-text"> ② 修改相关 webpack 配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-如果要在-vue-文件中的-style-使用-scss则在-style-处声明"><span class="nav-number">1.4.1.3.</span> <span class="nav-text"> ③ 如果要在 vue 文件中的 style 使用 scss,则在 style 处声明：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在-vue-中使用-axios"><span class="nav-number">1.4.2.</span> <span class="nav-text"> (2) 在 VUE 中使用 axios</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装-axios"><span class="nav-number">1.4.2.1.</span> <span class="nav-text"> ① 安装 axios</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-在入口-mainjs-中导入-axios-并将-axios-写入-vue-的原型"><span class="nav-number">1.4.2.2.</span> <span class="nav-text"> ② 在入口 main.js 中导入 axios 并将 axios 写入 vue 的原型。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用-axios"><span class="nav-number">1.4.2.3.</span> <span class="nav-text"> ③ 使用 axios</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-使用基于vue的ui"><span class="nav-number">1.4.3.</span> <span class="nav-text"> (3) 使用基于VUE的UI</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-vue与ssm项目的整合"><span class="nav-number">1.5.</span> <span class="nav-text"> 5. VUE与SSM项目的整合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-config-目录下-indexjs"><span class="nav-number">1.5.1.</span> <span class="nav-text"> ① 修改 config 目录下 index.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-覆盖此加载程序的publicpath设置-修改-build-目录下-utilsjs"><span class="nav-number">1.5.2.</span> <span class="nav-text"> ② 覆盖此加载程序的publicPath设置， 修改 build 目录下 utils.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-打包"><span class="nav-number">1.5.3.</span> <span class="nav-text"> ③ 打包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-创建-ssm-项目"><span class="nav-number">2.</span> <span class="nav-text"> 二、创建 SSM 项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-配置"><span class="nav-number">1.</span> <span class="nav-text"> VUE 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-创建-vue-项目"><span class="nav-number">1.1.</span> <span class="nav-text"> 一、创建 VUE 项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-nodejs-环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text"> 1. node.js 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-nodejs-安装"><span class="nav-number">1.2.1.</span> <span class="nav-text"> ① node.js 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-检测-nodejs-npm-是否安装成功"><span class="nav-number">1.2.2.</span> <span class="nav-text"> ② 检测 node.js, npm 是否安装成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-nrm-安装"><span class="nav-number">1.2.3.</span> <span class="nav-text"> * ③ nrm 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-cnpm-安装"><span class="nav-number">1.2.4.</span> <span class="nav-text"> * ④ cnpm 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意npm-无法全局安装的问题解决方案"><span class="nav-number">1.2.5.</span> <span class="nav-text"> 注意：npm 无法全局安装的问题解决方案：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-vue-环境搭建"><span class="nav-number">1.3.</span> <span class="nav-text"> 2. VUE 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-cli-安装"><span class="nav-number">1.3.1.</span> <span class="nav-text"> vue-cli 安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-搭建-vue-项目"><span class="nav-number">1.4.</span> <span class="nav-text"> 3. 搭建 VUE 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建-vue-项目"><span class="nav-number">1.4.1.</span> <span class="nav-text"> (1) 创建 VUE 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装依赖"><span class="nav-number">1.4.2.</span> <span class="nav-text"> (2) 安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-一些常用指令"><span class="nav-number">1.4.3.</span> <span class="nav-text"> (3) 一些常用指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置-vue-项目"><span class="nav-number">1.5.</span> <span class="nav-text"> 4. 配置 VUE 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在-vue-中使用-scss"><span class="nav-number">1.5.1.</span> <span class="nav-text"> (1) 在 VUE 中使用 scss</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装-node-sass-和-sass-loadr"><span class="nav-number">1.5.1.1.</span> <span class="nav-text"> ① 安装 node-sass 和 sass-loadr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-修改相关-webpack-配置"><span class="nav-number">1.5.1.2.</span> <span class="nav-text"> ② 修改相关 webpack 配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-如果要在-vue-文件中的-style-使用-scss则在-style-处声明"><span class="nav-number">1.5.1.3.</span> <span class="nav-text"> ③ 如果要在 vue 文件中的 style 使用 scss,则在 style 处声明：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在-vue-中使用-axios"><span class="nav-number">1.5.2.</span> <span class="nav-text"> (2) 在 VUE 中使用 axios</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装-axios"><span class="nav-number">1.5.2.1.</span> <span class="nav-text"> ① 安装 axios</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-在入口-mainjs-中导入-axios-并将-axios-写入-vue-的原型"><span class="nav-number">1.5.2.2.</span> <span class="nav-text"> ② 在入口 main.js 中导入 axios 并将 axios 写入 vue 的原型。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-使用-axios"><span class="nav-number">1.5.2.3.</span> <span class="nav-text"> ③ 使用 axios</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-使用基于vue的ui"><span class="nav-number">1.5.3.</span> <span class="nav-text"> (3) 使用基于VUE的UI</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-vue与ssm项目的整合"><span class="nav-number">1.6.</span> <span class="nav-text"> 5. VUE与SSM项目的整合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-config-目录下-indexjs"><span class="nav-number">1.6.1.</span> <span class="nav-text"> ① 修改 config 目录下 index.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-覆盖此加载程序的publicpath设置-修改-build-目录下-utilsjs"><span class="nav-number">1.6.2.</span> <span class="nav-text"> ② 覆盖此加载程序的publicPath设置， 修改 build 目录下 utils.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-打包"><span class="nav-number">1.6.3.</span> <span class="nav-text"> ③ 打包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-boot-配置"><span class="nav-number">2.</span> <span class="nav-text"> Spring Boot 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-java安装"><span class="nav-number">2.1.</span> <span class="nav-text"> 一、JAVA安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-maven安装"><span class="nav-number">2.2.</span> <span class="nav-text"> 二、Maven安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-配置-maven-本地仓库"><span class="nav-number">2.3.</span> <span class="nav-text"> 三、配置 Maven 本地仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-intellij-配置-maven"><span class="nav-number">2.4.</span> <span class="nav-text"> 四、IntelliJ 配置 Maven</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-创建springboot-mybatis-工程"><span class="nav-number">2.5.</span> <span class="nav-text"> 五、创建SpringBoot + Mybatis 工程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一创建项目"><span class="nav-number">2.5.1.</span> <span class="nav-text"> （一）创建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二相关配置及基本目录结构创建"><span class="nav-number">2.5.2.</span> <span class="nav-text"> （二）相关配置及基本目录结构创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三可忽略添加自动化工具"><span class="nav-number">2.5.3.</span> <span class="nav-text"> （三*[可忽略]）添加自动化工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四写一个小demo测试是否可以正常运行"><span class="nav-number">2.5.4.</span> <span class="nav-text"> （四）写一个小Demo测试是否可以正常运行</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
