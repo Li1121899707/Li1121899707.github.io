@@ -121,7 +121,14 @@
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/123123.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191116105950.png">
 <meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191116105817.png">
-<meta property="og:updated_time" content="2019-11-17T06:43:19.441Z">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/image-20191118152239776.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118155314.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118155710.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160018.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160820.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160847.png">
+<meta property="og:image" content="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160542.png">
+<meta property="og:updated_time" content="2019-11-18T09:13:52.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构重点知识">
 <meta name="twitter:description" content="第四章 树与二叉树  考试大纲： a: 二叉树的定义、性质、表示、遍历算法 b: 树的表示、操作算法 c: 森林与二叉树关系 d: 树与二叉树的应用及算法   重要名词  树【概念】：度，结点的深度、高度、层次，有序/无序树，两结点间路径、路径长度，森林。 树【存储】：双亲表示法、孩子表示法、孩子兄弟表示法。 树【遍历】：（树）先根遍历、后根遍历。（森林）先序遍历、中序遍历。 树【应用】：并查集">
@@ -415,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,216 字
+                  4,477 字
                 </span>
               
 
@@ -431,7 +438,7 @@
                   <span class="post-meta-item-text">阅读时长 </span>
                 
                 <span title="阅读时长">
-                  12 分钟
+                  16 分钟
                 </span>
               
             </div>
@@ -800,6 +807,230 @@ c: 图的应用及算法</p>
 </ul>
 </li>
 </ul>
+<h2 id="第六章-查找"><a class="markdownIt-Anchor" href="#第六章-查找"></a> 第六章 查找</h2>
+<blockquote>
+<p>考试大纲：<br>
+a: 查找与排序的相关概念<br>
+b: 典型算法的描述及复杂性分析<br>
+c: 查找与排序算法的应用</p>
+</blockquote>
+<h3 id="重要名词-3"><a class="markdownIt-Anchor" href="#重要名词-3"></a> 重要名词</h3>
+<ul>
+<li>【基本概念】：静态查找、动态查找</li>
+<li>【线性结构】：顺序查找、折半查找、分块查找</li>
+<li>【树形结构】：二叉排序树、二叉平衡树、B树、B+树</li>
+<li>【散列结构】：散列表</li>
+<li>【效率指标】：平均查找长度——ASL</li>
+</ul>
+<h3 id="b树"><a class="markdownIt-Anchor" href="#b树"></a> B树</h3>
+<h3 id="散列表"><a class="markdownIt-Anchor" href="#散列表"></a> 散列表</h3>
+<h4 id="1-名词"><a class="markdownIt-Anchor" href="#1-名词"></a> 1. 名词</h4>
+<ul>
+<li>散列函数，散列表</li>
+<li>散列函数：
+<ul>
+<li>直接定址法：不会产生冲突</li>
+<li>除留余数法</li>
+<li>数字分析法</li>
+<li>平方取中法</li>
+<li>折叠法</li>
+</ul>
+</li>
+<li>处理冲突的方法：
+<ul>
+<li>开放定址法
+<ul>
+<li>线性探测法：会造成大量元素堆积</li>
+<li>平方探测法：避免堆积，但是只能探测到一半单元</li>
+<li>再散列法</li>
+<li>伪随机序列法</li>
+</ul>
+</li>
+<li>拉链法（链地址法）</li>
+</ul>
+</li>
+<li>散列表的查找效率取决于：
+<ul>
+<li>装填因子（装满程度）</li>
+<li>散列函数</li>
+<li>处理冲突的方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-复杂度"><a class="markdownIt-Anchor" href="#2-复杂度"></a> 2. 复杂度</h4>
+<ul>
+<li>时间复杂度： $ O(1) $ ，与表中元素的个数无关。</li>
+<li>堆积现象会影响平均查找长度。</li>
+</ul>
+<h3 id="kmp算法"><a class="markdownIt-Anchor" href="#kmp算法"></a> KMP算法</h3>
+<blockquote>
+<p>学习自自b站大佬——正月点灯笼</p>
+<p>主串： $ abaacababcac $ , 匹配字串： $ ababc $</p>
+</blockquote>
+<h4 id="1-字符串的前缀后缀-部分匹配值"><a class="markdownIt-Anchor" href="#1-字符串的前缀后缀-部分匹配值"></a> 1. 字符串的前缀，后缀、部分匹配值</h4>
+<ul>
+<li>前缀：除了最后一个字符以外，字符串的所有头部字串。</li>
+<li>后缀：除了第一个字符以外，字符串的所有尾部字串。</li>
+<li>部分匹配值：前缀和后缀的<strong>最长的共有元素</strong>的长度
+<ul>
+<li>对 $ ababa $ 求前后缀：
+<ul>
+<li>前缀： $ {a, ab, aba, abab} $</li>
+<li>后缀：$ {a, ba, aba, baba} $</li>
+<li>最长公共前后缀为 $ aba $ ，因此部分匹配值为3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-kmp算法原理"><a class="markdownIt-Anchor" href="#2-kmp算法原理"></a> 2. KMP算法原理</h4>
+<ul>
+<li>减少模式串回溯的距离</li>
+<li>&quot;部分匹配&quot;的实质是，有时候，字符串头部和尾部会有重复。比如，“ABCDAB&quot;之中有两个&quot;AB”，那么它的&quot;部分匹配值&quot;就是2（&quot;AB&quot;的长度）。搜索词移动的时候，第一个&quot;AB&quot;向后移动4位（字符串长度-部分匹配值），就可以来到第二个&quot;AB&quot;的位置。 —— <a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank" rel="noopener">来源</a></li>
+</ul>
+<h4 id="3-kmp算法步骤"><a class="markdownIt-Anchor" href="#3-kmp算法步骤"></a> 3. KMP算法步骤</h4>
+<ul>
+<li>
+<p>第一步：写出所有的前缀，<strong>把每个前缀当作独立的串，分别求部分匹配值</strong><br>
+​	部分匹配值我写在了串的前面，最后一个串 $ ababc $ 不是前缀也不是后缀，可以不写。</p>
+<ul>
+<li>$ a $ , 没有前后缀，部分匹配值为0</li>
+<li>$ ab $ , 前缀为 $ {a} $ , 后缀为 $ {b} $ , 没有公共前后缀，部分匹配值为0</li>
+<li>$ aba $ , 前缀为 $ { a, ab} $ ，后缀为 $ {a, ba} $ ，公共前后缀为 $ {a} $ ，部分匹配值为1</li>
+</ul>
+</li>
+<li>
+<p>以此类推<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/image-20191118152239776.png" alt=""></p>
+</li>
+<li>
+<p>第二步：写前缀表 ，将主串拆为单个字符，将<strong>部分匹配值表右移一位</strong>，<strong>写在主串下面</strong>，<strong>第一位用-1代替</strong>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字符</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">部分匹配值</td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"><strong>2</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">右移</td>
+<td style="text-align:center"><em>-1</em></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>第三步：为字符分配下标。如果下标从0开始，则与上一个表相同。于是<strong>前缀表为</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">next数组下标</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">字符</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:left">next数组值</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>如果下标从1开始，则将“右移“行的每一项加1，于是前缀表为</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">next数组下标</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">字符</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:left">next数组值</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>我们以从**-1开始的next数组为例**，称上面的表为<strong>前缀表</strong>。</p>
+</li>
+<li>
+<p>第四步：匹配<br>
+原则：当主串为 $ p $ 、字串为 $ q $ 时匹配失败，则查看<strong>前缀表</strong>中 $ q $ 字符对应的next数组值 $ k $ ，则将**next[k]**对应的字符与主串中的 $ p $ 对应，从 <strong>next[k]</strong> 对应的字符继续匹配。</p>
+<ul>
+<li>当主串为a、字串为b时匹配失败（如下图），则查看前缀表中b字符对应的next数组值<strong>1</strong>，则将<strong>next[1]<strong>对应的字符</strong>b</strong>与T中的当前字符<strong>a</strong>对齐，从该字符继续匹配。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118155314.png" alt=""></li>
+<li>可见仍然匹配错误，再按照刚才的方法，当主串为a、字串为b时匹配失败（如下图），则查看前缀表中b字符对应的next数组值<strong>0</strong>，则将<strong>next[0]<strong>对应的字符</strong>a</strong>与T中的当前字符<strong>a</strong>对齐，从该字符继续匹配。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118155710.png" alt=""></li>
+<li>a-a匹配成功，c-b匹配失败，继续按照上面的方法进行。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160018.png" alt=""><br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160820.png" alt=""></li>
+<li>发现c-a仍然匹配失败，<strong>next[0]<strong>数组值为</strong>-1</strong>，因此直接将<strong>P</strong>右移一位即可。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160847.png" alt=""></li>
+<li>匹配成功。</li>
+<li>如果要继续匹配，则取<strong>P</strong>最后一位<strong>c</strong>的next数组值<strong>next[4]=2</strong>，将数组下标为<strong>2</strong>的字符<strong>a</strong>与<strong>T</strong>中的<strong>c</strong>对应。从a开始继续往后匹配。<br>
+<img src="https://liysuzy-1257377207.cos.ap-beijing.myqcloud.com/HexoImg/20191118160542.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h4 id="4-复杂度"><a class="markdownIt-Anchor" href="#4-复杂度"></a> 4. 复杂度</h4>
+<ul>
+<li>时间复杂度 $ O(m+n) $ , m、n分别是主串和模式串的长度。</li>
+</ul>
+<h4 id="5-kmp算法与普通模式匹配的比较"><a class="markdownIt-Anchor" href="#5-kmp算法与普通模式匹配的比较"></a> 5. KMP算法与普通模式匹配的比较</h4>
+<ul>
+<li>普通匹配模式的时间复杂度为 $ O(mn) $ ， KMP时间复杂度 $ O(m+n) $ 。其实在一般情况下，普通模式匹配的实际执行时间也近似为$ O(m+n) $ ，因此至今仍然被采用。</li>
+<li>KMP算法仅在主串与字串有很多”部分匹配“的时候才显得比普通算法快得多，主要优点在于<strong>主串不回溯</strong>。</li>
+</ul>
 
       
     </div>
@@ -1042,7 +1273,7 @@ c: 图的应用及算法</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-树与二叉树"><span class="nav-number">1.</span> <span class="nav-text"> 第四章 树与二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要名词"><span class="nav-number">1.1.</span> <span class="nav-text"> 重要名词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-图"><span class="nav-number">2.</span> <span class="nav-text"> 第五章 图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要名词-2"><span class="nav-number">2.1.</span> <span class="nav-text"> 重要名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的有关性质"><span class="nav-number">2.2.</span> <span class="nav-text"> 图的有关性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十字链表"><span class="nav-number">2.3.</span> <span class="nav-text"> 十字链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接多重表"><span class="nav-number">2.4.</span> <span class="nav-text"> 邻接多重表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bfs广度优先搜索"><span class="nav-number">2.5.</span> <span class="nav-text"> BFS（广度优先搜索）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dfs深度优先搜索"><span class="nav-number">2.6.</span> <span class="nav-text"> DFS（深度优先搜索）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小生成树"><span class="nav-number">2.7.</span> <span class="nav-text"> 最小生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prim普里姆算法"><span class="nav-number">2.8.</span> <span class="nav-text"> Prim（普里姆）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kruskal克鲁斯卡尔算法"><span class="nav-number">2.9.</span> <span class="nav-text"> Kruskal（克鲁斯卡尔）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dijkstra迪杰斯特拉算法"><span class="nav-number">2.10.</span> <span class="nav-text"> Dijkstra（迪杰斯特拉）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#floyd弗洛伊德算法"><span class="nav-number">2.11.</span> <span class="nav-text"> Floyd（弗洛伊德）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑排序"><span class="nav-number">2.12.</span> <span class="nav-text"> 拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键路径"><span class="nav-number">2.13.</span> <span class="nav-text"> 关键路径</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-树与二叉树"><span class="nav-number">1.</span> <span class="nav-text"> 第四章 树与二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要名词"><span class="nav-number">1.1.</span> <span class="nav-text"> 重要名词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-图"><span class="nav-number">2.</span> <span class="nav-text"> 第五章 图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要名词-2"><span class="nav-number">2.1.</span> <span class="nav-text"> 重要名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的有关性质"><span class="nav-number">2.2.</span> <span class="nav-text"> 图的有关性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十字链表"><span class="nav-number">2.3.</span> <span class="nav-text"> 十字链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接多重表"><span class="nav-number">2.4.</span> <span class="nav-text"> 邻接多重表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bfs广度优先搜索"><span class="nav-number">2.5.</span> <span class="nav-text"> BFS（广度优先搜索）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dfs深度优先搜索"><span class="nav-number">2.6.</span> <span class="nav-text"> DFS（深度优先搜索）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小生成树"><span class="nav-number">2.7.</span> <span class="nav-text"> 最小生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prim普里姆算法"><span class="nav-number">2.8.</span> <span class="nav-text"> Prim（普里姆）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kruskal克鲁斯卡尔算法"><span class="nav-number">2.9.</span> <span class="nav-text"> Kruskal（克鲁斯卡尔）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dijkstra迪杰斯特拉算法"><span class="nav-number">2.10.</span> <span class="nav-text"> Dijkstra（迪杰斯特拉）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#floyd弗洛伊德算法"><span class="nav-number">2.11.</span> <span class="nav-text"> Floyd（弗洛伊德）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑排序"><span class="nav-number">2.12.</span> <span class="nav-text"> 拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键路径"><span class="nav-number">2.13.</span> <span class="nav-text"> 关键路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六章-查找"><span class="nav-number">3.</span> <span class="nav-text"> 第六章 查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要名词-3"><span class="nav-number">3.1.</span> <span class="nav-text"> 重要名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b树"><span class="nav-number">3.2.</span> <span class="nav-text"> B树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列表"><span class="nav-number">3.3.</span> <span class="nav-text"> 散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-名词"><span class="nav-number">3.3.1.</span> <span class="nav-text"> 1. 名词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-复杂度"><span class="nav-number">3.3.2.</span> <span class="nav-text"> 2. 复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kmp算法"><span class="nav-number">3.4.</span> <span class="nav-text"> KMP算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-字符串的前缀后缀-部分匹配值"><span class="nav-number">3.4.1.</span> <span class="nav-text"> 1. 字符串的前缀，后缀、部分匹配值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-kmp算法原理"><span class="nav-number">3.4.2.</span> <span class="nav-text"> 2. KMP算法原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-kmp算法步骤"><span class="nav-number">3.4.3.</span> <span class="nav-text"> 3. KMP算法步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-复杂度"><span class="nav-number">3.4.4.</span> <span class="nav-text"> 4. 复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-kmp算法与普通模式匹配的比较"><span class="nav-number">3.4.5.</span> <span class="nav-text"> 5. KMP算法与普通模式匹配的比较</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
