@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2FLi1121899707.github.io%2F2020%2F02%2F17%2FJAVA%2F</url>
+    <title><![CDATA[Java]]></title>
+    <url>%2FLi1121899707.github.io%2F2020%2F02%2F18%2FJAVA%2F</url>
     <content type="text"><![CDATA[一、JAVA 字符串操作 (一) String 1. 字符串定义 法一： 1String str = &quot;Liysuzy&quot;; 法二： 123char[] helloArray = &#123; &apos;L&apos;, &apos;i&apos;, &apos;y&apos;, &apos;s&apos;, &apos;u&apos;, &apos;z&apos;, &apos;y&apos;&#125;;String helloString = new String(helloArray); System.out.println( helloString ); 2. 字符串长度 它返回字符串对象包含的字符数 1int len = str.length(); 3. 连接字符串 1string1.concat(string2); 4. 创建格式化字符串 12345String fs;fs = String.format(&quot;浮点型变量的值为 &quot; + &quot;%f, 整型变量的值为 &quot; + &quot; %d, 字符串变量的值为 &quot; + &quot; %s&quot;, floatVar, intVar, stringVar); 1https://blog.csdn.net/wenqiangluyao/article/details/96474361 5. 常用方法 str.toUpperCase() str.replaceAll(c, &quot;x&quot;) (二) StringBuffer 和 StringBuilder 当对字符串进行修改的时候，需要使用 StringBuffer 和 StringBuilder 类。 和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。 StringBuilder 类在 Java 5 中被提出，它和 StringBuffer 之间的最大不同在于 StringBuilder 的方法不是线程安全的（不能同步访问）。 由于 StringBuilder 相较于StringBuffer 有速度优势，所以多数情况下建议使用 StringBuilder 类。然而在应用程序要求线程安全的情况下，则必须使用 StringBuffer 类。 相较于 String 类特有方法： 代码 返回值 方法描述 append(String s) 将指定的字符串追加到此字符序列。 reverse() 将此字符序列用其反转形式取代。 delete(int start, int end) 移除此序列的子字符串中的字符。 insert(int offset, int i) 将 int 参数的字符串表示形式插入此序列中。 replace(int start, int end, String str) 使用给定 String 中的字符替换此序列的子字符串中的字符。 二、JAVA 容器 （一） HashMap 1. 简介 键值对 2. 遍历 3. 常用方法 4. 其他操作 ① 对键排序 123456HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();......Object[] key_arr = map.keySet().toArray();Arrays.sort(key_arr);for(Object key : key_arr) System.out.println(key + &quot; &quot; + map.get(key)); ② 对值排序 （二）HashSet 1. 简介 HashSet 简单的理解就是HashSet对象中不能存储相同的数据，存储数据时是无序的。 但是 HashSet 存储元素的顺序并不是按照存入时的顺序（和List显然不同） 是按照哈希值来存的所以取数据也是按照哈希值取得。 2. 遍历 用 Iterator 来遍历 123Iterator&lt;String&gt; iterator=hashSet.iterator(); while(iterator.hasNext()) System.out.print(iterator.next()+&quot;&quot;); 用 for 循环遍历 12for(String string: hashset) System.out.println(string); 3. 常用方法 （三） TreeSet 1. 简介 TreeSet是一个有序的集合。 使用二叉树实现。 不允许放入 null 值 2. 遍历 TreeSet 不支持快速随机遍历，只能通过迭代器进行遍历！ 12345678// 升序输出for(Iterator iter = set.iterator(); iter.hasNext(); ) &#123; iter.next();&#125; // 降序输出for(Iterator iter = set.descendingIterator(); iter.hasNext(); ) &#123; iter.next();&#125; 3. 常用方法 修饰符和类型 方法和描述 boolean add(E e) ：将指定的元素添加到这套，如果它不存在 E ceiling(E e) ：返回最小的元素在这一组大于或等于给定的元素，则null如果没有这样的元素。 void clear() ：从这一组中移除所有元素。 Object clone() ：返回此TreeSet实例浅表副本。 boolean contains(Object o) ：如果此集合包含指定的元素，则返回true 。 Iterator iterator() ：返回迭代器中这套以升序排序的元素。 Iterator descendingIterator() ：返回迭代器中这套降序排序的元素。 boolean isEmpty() ：如果此集不包含任何元素，则返回true 。 E last() ：在这套目前返回的最后一个 （最高） 的元素。 E lower(E e) ：在这一套严格的小于给定的元素，则null返回的最大元素，如果没有这样的元素。 E pollFirst() ：检索和删除第一个 （最低） 元素，或如果此集合为空，则返回null 。 E pollLast() ：检索和删除的最后一个 （最高） 的元素，或如果此集合为空，则返回null boolean remove(Object o) ：从这一组中移除指定的元素，如果它存在。 int size() ：在这套 （其基数） 中返回的元素的数目。 （四）LinkedHashSet 遍历序和插入序是一致的 三、其他 （一）Collections类 Collections.sort(arrayList); Collections.reverse(list); 1234567891011121314//这里的顺序，是我自己定义的一个List&lt;String&gt;String[] regulation = &#123;&quot;jams&quot;,&quot;buke&quot;,&quot;rose&quot;,&quot;lua&quot;&#125;;final List&lt;String&gt; regulationOrder = Arrays.asList(regulation);String[] ordered = &#123;&quot;rose&quot;,&quot;jams&quot;,&quot;lua&quot;,&quot;rose&quot;,&quot;buke&quot;,&quot;jams&quot;,&quot;rose&quot;,&quot;buke&quot;,&quot;jams&quot;&#125;;List&lt;String&gt; orderedList = Arrays.asList(ordered);Collections.sort(orderedList, new Comparator&lt;String&gt;()&#123; public int compare(String o1, String o2) &#123; int io1 = regulationOrder.indexOf(o1); int io2 = regulationOrder.indexOf(o2); return io1 - io2; &#125;&#125;);System.out.println(orderedList); （二）二进制转化 1234567 public static String DToB(long num)&#123; StringBuffer stringBuffer = new StringBuffer(&quot;&quot;); for(int i=31; i&gt;=0; i--) &#123; stringBuffer.append(num &gt;&gt;&gt; i &amp; 1); &#125; return stringBuffer.toString();&#125; 12345public static Long BToD(String str)&#123; Long result = Long.parseLong(str, 2); // int result = Integer.parseInt(str, 2); return result;&#125; （三）最小公倍数 = 两数之积 ÷ 最大公约数；辗转相除（欧几里得法）法求最大公约数]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hibernate]]></title>
@@ -88,9 +94,9 @@
       </categories>
       <tags>
         <tag>SSM</tag>
-        <tag>后端</tag>
         <tag>VUE</tag>
         <tag>前端</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
@@ -101,8 +107,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>后端</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
